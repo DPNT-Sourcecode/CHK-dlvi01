@@ -62,8 +62,8 @@ public class CheckoutSolution {
                         checkoutSum += count * unitPrices.get(sku);
                     }
                 }
-            } else if (sku.equals('F') && (count % 2 > 0)) {
-                    while (count > 0 && count % 2 > 0) {
+            } else if (sku.equals('F') && (count / 2 > 0)) {
+                    while (count > 0 && count / 2 > 0) {
                         count = count - 2;
                         checkoutSum += 2 * unitPrices.get(sku);
 
@@ -183,4 +183,5 @@ public class CheckoutSolution {
         return sum;
     }
 }
+
 
