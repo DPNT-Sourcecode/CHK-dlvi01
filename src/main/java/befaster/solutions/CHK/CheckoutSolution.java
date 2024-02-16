@@ -223,15 +223,15 @@ public class CheckoutSolution {
 
         entriesSortedByValues(specialItemPriceMap);
 
-        StringBuilder s = new StringBuilder();
+        StringBuilder sb = new StringBuilder();
 
         for (char c : skus.toCharArray()) {
             if (c == 'S' || c == 'T' || c == 'X' || c == 'Y' || c == 'Z') {
-                s.append(c);
+                sb.append(c);
             }
         }
 
-        StringBuilder sb = new StringBuilder().append(sortStringByCharValueMap(s.toString(), specialItemPriceMap));
+        sb = new StringBuilder().append(sortStringByCharValueMap(sb.toString(), specialItemPriceMap));
 
         int lastDivisibleIndex = 0;
 
@@ -338,4 +338,5 @@ public class CheckoutSolution {
         return sum;
     }
 }
+
 
