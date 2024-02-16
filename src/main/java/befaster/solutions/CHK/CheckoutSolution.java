@@ -215,10 +215,16 @@ public class CheckoutSolution {
         boolean isWholeNumber = multiplesOfThree == (int) multiplesOfThree;
 
         if (isWholeNumber) {
-
+            skuCounts.put('S', 0);
+            skuCounts.put('T', 0);
+            skuCounts.put('X', 0);
+            skuCounts.put('Y', 0);
+            skuCounts.put('Z', 0);
         }
 
-        return 0;
+        int cost = (int) multiplesOfThree * 45;
+
+
     }
 
     private Map<Character, Integer> handleSpecialOffer1FreeFor3SpecificItems(Map<Character, Integer> skuCounts, Character itemThreeIsNeededOf, Character freeItem, int numOfItemsNeededToQualifyForFree) {
@@ -280,5 +286,6 @@ public class CheckoutSolution {
         return sum;
     }
 }
+
 
 
