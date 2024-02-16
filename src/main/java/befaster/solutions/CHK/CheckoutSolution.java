@@ -28,6 +28,9 @@ public class CheckoutSolution {
         // Store SKUs in a HashMap, so we can identify if there are multiples of 3As, or 2Bs, for example.
         Map<Character, Integer> skuCounts = getSkuCounts(skus);
 
+        // For every 2 pieces of E, one B is received for free.
+        skuCounts = handleSpecialOffer1BFor2Es(skuCounts);
+
         // Calculate the checkout sum.
         for (Map.Entry<Character, Integer> entry : skuCounts.entrySet()) {
             Character sku = entry.getKey();
@@ -65,6 +68,16 @@ public class CheckoutSolution {
         }
 
         return checkoutSum;
+    }
+
+    private Map<Character, Integer> handleSpecialOffer1BFor2Es(Map<Character, Integer> skuCounts) {
+
+        if (skuCounts.containsKey('E') && skuCounts.containsKey('B')) {
+            int eCount = skuCounts.get('E');
+            int bCount = skuCounts.get('B');
+
+            
+        }
     }
 
     private boolean hasNonAlphabeticAndLowercaseChars(String skus) {
@@ -116,5 +129,6 @@ public class CheckoutSolution {
         return sum;
     }
 }
+
 
 

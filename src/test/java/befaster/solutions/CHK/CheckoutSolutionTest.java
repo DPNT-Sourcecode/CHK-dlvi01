@@ -81,6 +81,22 @@ public class CheckoutSolutionTest {
     }
 
     @Test
+    public void test_checkout_with_6_A_special_offers() {
+        String items = "AAAAAA";
+        int expectedSum = 250;
+
+        assertThat(checkout.checkout(items), equalTo(expectedSum));
+    }
+
+    @Test
+    public void test_checkout_with_8_A_special_offers() {
+        String items = "AAAAAAAA";
+        int expectedSum = 330;
+
+        assertThat(checkout.checkout(items), equalTo(expectedSum));
+    }
+
+    @Test
     public void test_checkout_with_2_E_special_offers_and_B_comes_for_free() {
         String items = "EEB";
         int expectedSum = 80;
@@ -145,5 +161,6 @@ public class CheckoutSolutionTest {
     }
 
 }
+
 
 
