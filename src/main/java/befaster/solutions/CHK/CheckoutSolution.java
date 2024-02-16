@@ -26,6 +26,9 @@ public class CheckoutSolution {
         // For every 2 pieces of E, 1 B is received for free.
         skuCounts = handleSpecialOffer1FreeFor3SpecificItems(skuCounts, 'E', 'B', 2);
 
+        // For every 2 pieces of F, 1 F is received for free.
+        skuCounts = handleSpecialOffer1FreeFor3SpecificItems(skuCounts, 'F', 'F', 2);
+
         // For every 3 pieces of N, 1 M is received for free.
         skuCounts = handleSpecialOffer1FreeFor3SpecificItems(skuCounts, 'N', 'M', 3);
 
@@ -43,13 +46,13 @@ public class CheckoutSolution {
             int count = entry.getValue();
 
             if (sku.equals('A')) {
-                checkoutSum = handleAPriceCalculation(count, checkoutSum, unitPrices, sku);
+                checkoutSum = handleBulkSpecialOffer(count, checkoutSum, unitPrices, sku, 3, 130, 5, 200);
             } else if (sku.equals('B')) {
                 checkoutSum = handleMultiSKUPriceCalculation(count, checkoutSum, unitPrices, sku, 2, 45);
-            } else if (sku.equals('F') && (count / fSpecialOfferUnitRequirement > 0)) {
-                checkoutSum += handleFSpecialOffer(count, unitPrices, sku, fSpecialOfferUnitRequirement);
+//            } else if (sku.equals('F') && (count / fSpecialOfferUnitRequirement > 0)) {
+//                checkoutSum += handleFSpecialOffer(count, unitPrices, sku, fSpecialOfferUnitRequirement);
             } else if (sku.equals('H')) {
-                checkoutSum = handleHPriceCalculation(count, checkoutSum, unitPrices, sku);
+                checkoutSum = handleBulkSpecialOffer(count, checkoutSum, unitPrices, sku, 5, 45, 10, 80);
             } else if (sku.equals('K')) {
                 checkoutSum = handleMultiSKUPriceCalculation(count, checkoutSum, unitPrices, sku, 2, 150);
             } else if (sku.equals('P')) {
@@ -57,7 +60,7 @@ public class CheckoutSolution {
             } else if (sku.equals('Q')) {
                 checkoutSum = handleMultiSKUPriceCalculation(count, checkoutSum, unitPrices, sku, 3, 80);
             } else if (sku.equals('V')) {
-
+                checkoutSum = handleBulkSpecialOffer(count, checkoutSum, unitPrices, sku, 2, 90, 3, 130);
             }
             // Handle remaining SKUs without special offers.
             else {
@@ -101,17 +104,15 @@ public class CheckoutSolution {
         return unitPrices;
     }
 
-    private int handleAPriceCalculation(int count, int checkoutSum, Map<Character, Integer> unitPrices, Character sku) {
-        // Handles price calculation for A items, including special offer calculation.
+    private int handleBulkSpecialOffer(int count, int checkoutSum, Map<Character, Integer> unitPrices, Character sku, int specialOfferFirstUnitRequirement, int specialOfferFirstPrice, int specialOfferSecondUnitRequirement, int specialOfferSecondPrice) {
+        // Handles price calculation for items, including special offer
+        // calculation, where certain items cost less if you buy in bulk
+        // and the more you buy, the less it costs.
 
-        int specialOffer3AUnitRequirement = 3;
-        int specialOffer3APrice = 130;
+        // Example 5A for 200, 3A for 130, but an individual A is 50.
 
-        int specialOffer5AUnitRequirement = 5;
-        int specialOffer5APrice = 200;
-
-        if (isSpecialOfferApplicable(count, specialOffer3AUnitRequirement) || isSpecialOfferApplicable(count, specialOffer5AUnitRequirement)) {
-            checkoutSum += handleASpecialOffer(unitPrices, sku, count, specialOffer3AUnitRequirement, specialOffer3APrice, specialOffer5AUnitRequirement, specialOffer5APrice);
+        if (isSpecialOfferApplicable(count, specialOfferFirstUnitRequirement) || isSpecialOfferApplicable(count, specialOfferSecondUnitRequirement)) {
+            checkoutSum += handleIncreasingBulkSpecialOffer(unitPrices, sku, count, specialOfferFirstUnitRequirement, specialOfferFirstPrice, specialOfferSecondUnitRequirement, specialOfferSecondPrice);
         } else {
             if (unitPrices.containsKey(sku)) {
                 checkoutSum += count * unitPrices.get(sku);
@@ -120,30 +121,32 @@ public class CheckoutSolution {
         return checkoutSum;
     }
 
-    private int handleASpecialOffer(Map<Character, Integer> unitPrices, Character sku, int count, int specialOffer3AUnitRequirement, int specialOffer3APrice, int specialOffer5AUnitRequirement, int specialOffer5APrice) {
+    private int handleIncreasingBulkSpecialOffer(Map<Character, Integer> unitPrices, Character sku, int count, int specialOfferFirstUnitRequirement, int specialOfferFirstPrice, int specialOfferSecondUnitRequirement, int specialOfferSecondPrice) {
 
-        // Handle both special offers for A: 3A for 130, 5A for 200.
+        // Handle a special offer where certain items cost less if you buy in bulk
+        // and the more you buy, the less it costs.
 
         int sum = 0;
 
-        // If A's count is divisible by 5, first apply that special offer.
-        // Then, if the remaining count is divisible by 3, then apply that special offer.
-        // Then, if there are any remaining As, then those are priced individually.
+        // If the SKU type's count is divisible by the second unit requirement (higher), then apply that special offer.
+        // Then, if the remaining count is divisible by the first unit requirement (lower), then apply that special offer.
+        // Then, if there are any remaining items of the type, then those are priced individually.
+        // Example 5A for 200, 3A for 130, but an individual A is 50.
 
-        boolean isDivisibleBy5 = (count / specialOffer5AUnitRequirement) > 0;
+        boolean isDivisibleBySecondUnitRequirement = (count / specialOfferSecondUnitRequirement) > 0;
 
-        if (isDivisibleBy5) {
-            int multiplesOf5A = count / specialOffer5AUnitRequirement;
-            sum += multiplesOf5A * specialOffer5APrice;
-            count = count - specialOffer5AUnitRequirement * multiplesOf5A;
+        if (isDivisibleBySecondUnitRequirement) {
+            int multiplesOf5A = count / specialOfferSecondUnitRequirement;
+            sum += multiplesOf5A * specialOfferSecondPrice;
+            count = count - specialOfferSecondUnitRequirement * multiplesOf5A;
         }
 
-        boolean isDivisibleBy3 = (count / specialOffer3AUnitRequirement) > 0;
+        boolean isDivisibleByFirstUnitRequirement = (count / specialOfferFirstUnitRequirement) > 0;
 
-        if (isDivisibleBy3) {
-            int multiplesOf3A = count / specialOffer3AUnitRequirement;
-            sum += multiplesOf3A * specialOffer3APrice;
-            count = count - specialOffer3AUnitRequirement * multiplesOf3A;
+        if (isDivisibleByFirstUnitRequirement) {
+            int multiplesOf3A = count / specialOfferFirstUnitRequirement;
+            sum += multiplesOf3A * specialOfferFirstPrice;
+            count = count - specialOfferFirstUnitRequirement * multiplesOf3A;
         }
 
         if (count > 0) {
@@ -151,25 +154,6 @@ public class CheckoutSolution {
         }
 
         return sum;
-    }
-
-    private int handleHPriceCalculation(int count, int checkoutSum, Map<Character, Integer> unitPrices, Character sku) {
-        // Handles price calculation for H items, including special offer calculation.
-
-        int specialOffer5HUnitRequirement = 5;
-        int specialOffer5HPrice = 45;
-
-        int specialOffer10HUnitRequirement = 10;
-        int specialOffer10HPrice = 80;
-
-        if (isSpecialOfferApplicable(count, specialOffer5HUnitRequirement) || isSpecialOfferApplicable(count, specialOffer10HUnitRequirement)) {
-            checkoutSum += handleASpecialOffer(unitPrices, sku, count, specialOffer5HUnitRequirement, specialOffer5HPrice, specialOffer10HUnitRequirement, specialOffer10HPrice);
-        } else {
-            if (unitPrices.containsKey(sku)) {
-                checkoutSum += count * unitPrices.get(sku);
-            }
-        }
-        return checkoutSum;
     }
 
     private static int handleMultiSKUPriceCalculation(int count, int checkoutSum, Map<Character, Integer> unitPrices, Character sku, int specialOfferUnitRequirement, int specialOfferPrice) {
@@ -273,3 +257,4 @@ public class CheckoutSolution {
         return sum;
     }
 }
+
