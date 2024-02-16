@@ -37,11 +37,14 @@ public class CheckoutSolution {
             int count = entry.getValue();
 
             if (sku.equals('A')) {
-                int specialOfferUnitRequirement = 3;
-                int specialOfferPrice = 130;
+                int specialOffer3AUnitRequirement = 3;
+                int specialOffer3APrice = 130;
 
-                if (isSpecialOfferApplicable(count, specialOfferUnitRequirement)) {
-                    checkoutSum += handleSpecialOffer(unitPrices, sku, count,  specialOfferUnitRequirement, specialOfferPrice);
+                int specialOffer5AUnitRequirement = 5;
+                int specialOffer5APrice = 200;
+
+                if (isSpecialOfferApplicable(count, specialOffer3AUnitRequirement) || isSpecialOfferApplicable(count, specialOffer5AUnitRequirement)) {
+                    checkoutSum += handleASpecialOffer(unitPrices, sku, count, specialOffer3AUnitRequirement, specialOffer3APrice, specialOffer5AUnitRequirement, specialOffer5APrice);
                 } else {
                     if (unitPrices.containsKey(sku)) {
                         checkoutSum += count * unitPrices.get(sku);
@@ -52,7 +55,7 @@ public class CheckoutSolution {
                 int specialOfferPrice = 45;
 
                 if (isSpecialOfferApplicable(count, specialOfferUnitRequirement)) {
-                    checkoutSum += handleSpecialOffer(unitPrices, sku, count,  specialOfferUnitRequirement, specialOfferPrice);
+                    checkoutSum += handleBSpecialOffer(unitPrices, sku, count, specialOfferUnitRequirement, specialOfferPrice);
                 } else {
                     if (unitPrices.containsKey(sku)) {
                         checkoutSum += count * unitPrices.get(sku);
@@ -70,18 +73,41 @@ public class CheckoutSolution {
         return checkoutSum;
     }
 
-    private Map<Character, Integer> handleSpecialOffer1BFor2Es(Map<Character, Integer> skuCounts) {
+    private int handleASpecialOffer(Map<Character, Integer> unitPrices, Character sku, int count, int specialOffer3AUnitRequirement, int specialOffer3APrice, int specialOffer5AUnitRequirement, int specialOffer5APrice) {
 
-        if (skuCounts.containsKey('E') && skuCounts.containsKey('B')) {
-            int eCount = skuCounts.get('E');
-            int bCount = skuCounts.get('B');
+        // Handle both special offers for A: 3A for 130, 5A for 200.
 
-            
+        int sum = 0;
+
+        // If A's count is divisible by 5, first apply that special offer.
+        // Then, if the remaining count is divisible by 3, then apply that special offer.
+        // Then, if there are any remaining As, then those are priced individually.
+
+        boolean isDivisibleBy5 = (count / specialOffer5AUnitRequirement) > 0;
+
+        if (isDivisibleBy5) {
+            int multiplesOf5A = count / specialOffer5AUnitRequirement;
+            sum += multiplesOf5A * specialOffer5APrice;
+            count = count - specialOffer5AUnitRequirement * multiplesOf5A;
         }
+
+        boolean isDivisibleBy3 = (count / specialOffer3AUnitRequirement) > 0;
+
+        if (isDivisibleBy3) {
+            int multiplesOf3A = count / specialOffer3AUnitRequirement;
+            sum += multiplesOf3A * specialOffer3APrice;
+            count = count - specialOffer3AUnitRequirement * multiplesOf3A;
+        }
+
+        if (count > 0) {
+            sum += count * unitPrices.get(sku);
+        }
+
+        return sum;
     }
 
     private boolean hasNonAlphabeticAndLowercaseChars(String skus) {
-        for (char c: skus.toCharArray()) {
+        for (char c : skus.toCharArray()) {
             if (!Character.isLetter(c) || Character.isLowerCase(c)) {
                 return true;
             }
@@ -105,11 +131,30 @@ public class CheckoutSolution {
         return skuCounts;
     }
 
+    private Map<Character, Integer> handleSpecialOffer1BFor2Es(Map<Character, Integer> skuCounts) {
+        // Handle the special offer where 2Es get 1 B for free.
+
+        if (skuCounts.containsKey('E') && skuCounts.containsKey('B')) {
+            int eCount = skuCounts.get('E');
+            int bCount = skuCounts.get('B');
+
+            // Calculate the number of free Bs.
+            int numOfFreeBs = eCount / 2;
+
+            // Deduct the number of free Bs from bCount, put it back into the skuCounts map.
+            // The remaining Bs will cost the customer.
+            bCount -= numOfFreeBs;
+            skuCounts.put('B', bCount);
+        }
+
+        return skuCounts;
+    }
+
     private static boolean isSpecialOfferApplicable(int count, int specialOfferUnitRequirement) {
         return count / specialOfferUnitRequirement > 0;
     }
 
-    private static int handleSpecialOffer(Map<Character, Integer> unitPrices, Character sku, int count, int specialOfferUnitRequirement, int specialOfferPrice) {
+    private static int handleBSpecialOffer(Map<Character, Integer> unitPrices, Character sku, int count, int specialOfferUnitRequirement, int specialOfferPrice) {
         int sum = 0;
 
         int specialOfferCount = count / specialOfferUnitRequirement;
@@ -129,3 +174,4 @@ public class CheckoutSolution {
         return sum;
     }
 }
+
