@@ -48,7 +48,7 @@ public class CheckoutSolution {
         int lastDivisibleIndex = 0;
 
         for (int i = 0; i < sb.length(); i++) {
-            if (i != 0 && i % 3 == 0) {
+            if (i != 0 && (i+1) % 3 == 0) {
                 checkoutSum += 45;
 
                 int currentCharCount = skuCounts.get(sb.charAt(i));
@@ -388,5 +388,6 @@ public class CheckoutSolution {
         return sum;
     }
 }
+
 
 
