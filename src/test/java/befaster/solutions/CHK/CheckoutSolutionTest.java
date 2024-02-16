@@ -362,7 +362,7 @@ public class CheckoutSolutionTest {
     @Test
     public void test_checkout_with_2_K_special_offer() {
         String items = "KK";
-        int expectedSum = 150;
+        int expectedSum = 120;
 
         assertThat(checkout.checkout(items), equalTo(expectedSum));
     }
@@ -488,4 +488,5 @@ public class CheckoutSolutionTest {
     }
 
 }
+
 
