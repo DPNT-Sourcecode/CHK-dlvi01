@@ -210,7 +210,13 @@ public class CheckoutSolution {
 
         int sum = sCount + tCount + xCount + yCount + zCount;
 
-        int multiplesOfThree = sum / 3;
+        double multiplesOfThree = (double) sum / 3;
+
+        boolean isWholeNumber = multiplesOfThree == (int) multiplesOfThree;
+
+        if (isWholeNumber) {
+
+        }
 
         return 0;
     }
@@ -274,4 +280,5 @@ public class CheckoutSolution {
         return sum;
     }
 }
+
 
