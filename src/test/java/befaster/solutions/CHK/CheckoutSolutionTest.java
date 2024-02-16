@@ -73,6 +73,14 @@ public class CheckoutSolutionTest {
     }
 
     @Test
+    public void test_large_checkout_with_special_offers_and_multiple_items() {
+        String items = "ABCDCBAABCABBAAA";
+        int expectedSum = 165;
+
+        assertThat(checkout.checkout(items), equalTo(expectedSum));
+    }
+
+    @Test
     public void test_checkout_with_no_items() {
         String items = "";
         int expectedSum = 0;
@@ -105,6 +113,3 @@ public class CheckoutSolutionTest {
     }
 
 }
-
-
-
