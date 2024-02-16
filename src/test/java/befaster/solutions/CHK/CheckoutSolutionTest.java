@@ -455,6 +455,13 @@ public class CheckoutSolutionTest {
         assertThat(checkout.checkout(items), equalTo(expectedSum));
     }
 
+    @Test
+    public void test_checkout_any_3_special_offer_fourth_variant() {
+        String items = "SSSZ";
+        int expectedSum = 45;
+
+        assertThat(checkout.checkout(items), equalTo(expectedSum));
+    }
 
     @Test
     public void test_checkout_any_3_special_offer_multiple_offers() {
@@ -497,4 +504,5 @@ public class CheckoutSolutionTest {
     }
 
 }
+
 
