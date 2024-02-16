@@ -26,9 +26,6 @@ public class CheckoutSolution {
         // For every 2 pieces of E, 1 B is received for free.
         skuCounts = handleSpecialOffer1FreeFor3SpecificItems(skuCounts, 'E', 'B', 2);
 
-        // For every 2 pieces of F, 1 F is received for free.
-        skuCounts = handleSpecialOffer1FreeFor3SpecificItems(skuCounts, 'F', 'F', 2);
-
         // For every 3 pieces of N, 1 M is received for free.
         skuCounts = handleSpecialOffer1FreeFor3SpecificItems(skuCounts, 'N', 'M', 3);
 
@@ -49,8 +46,8 @@ public class CheckoutSolution {
                 checkoutSum = handleBulkSpecialOffer(count, checkoutSum, unitPrices, sku, 3, 130, 5, 200);
             } else if (sku.equals('B')) {
                 checkoutSum = handleMultiSKUPriceCalculation(count, checkoutSum, unitPrices, sku, 2, 45);
-//            } else if (sku.equals('F') && (count / fSpecialOfferUnitRequirement > 0)) {
-//                checkoutSum += handleFSpecialOffer(count, unitPrices, sku, fSpecialOfferUnitRequirement);
+            } else if (sku.equals('F') && (count / fSpecialOfferUnitRequirement > 0)) {
+                checkoutSum += handleFSpecialOffer(count, unitPrices, sku, fSpecialOfferUnitRequirement);
             } else if (sku.equals('H')) {
                 checkoutSum = handleBulkSpecialOffer(count, checkoutSum, unitPrices, sku, 5, 45, 10, 80);
             } else if (sku.equals('K')) {
@@ -122,8 +119,7 @@ public class CheckoutSolution {
     }
 
     private int handleIncreasingBulkSpecialOffer(Map<Character, Integer> unitPrices, Character sku, int count, int specialOfferFirstUnitRequirement, int specialOfferFirstPrice, int specialOfferSecondUnitRequirement, int specialOfferSecondPrice) {
-
-        // Handle a special offer where certain items cost less if you buy in bulk
+        // Handles a special offer where certain items cost less if you buy in bulk
         // and the more you buy, the less it costs.
 
         int sum = 0;
@@ -195,7 +191,7 @@ public class CheckoutSolution {
     }
 
     private Map<Character, Integer> handleSpecialOffer1FreeFor3SpecificItems(Map<Character, Integer> skuCounts, Character itemThreeIsNeededOf, Character freeItem, int numOfItemsNeededToQualifyForFree) {
-        // Handle the special offer where a specific number of items get 1 different kind of item for free.
+        // Handles the special offer where a specific number of items get 1 different kind of item for free.
 
         if (skuCounts.containsKey(itemThreeIsNeededOf) && skuCounts.containsKey(freeItem)) {
             int threeItemCount = skuCounts.get(itemThreeIsNeededOf);
@@ -257,4 +253,5 @@ public class CheckoutSolution {
         return sum;
     }
 }
+
 
