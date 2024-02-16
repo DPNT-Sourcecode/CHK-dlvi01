@@ -226,6 +226,23 @@ public class CheckoutSolution {
 
         int cost = (int) multiplesOfThree * 45;
 
+        // PLAN:
+        // Check how many are there of S T X Y Z in total.
+        // if isWHoleNumber, then great,
+        // multiply the division result by 45, that's the total price of these items.
+
+        // Else:
+            // Find which item or items has a number that is not divisible by 3.
+        // sum = 0;
+        // Iterate over the map's entry set:
+            // Add the current value to sum
+
+
+
+
+
+
+
         return 0;
     }
 
@@ -288,3 +305,4 @@ public class CheckoutSolution {
         return sum;
     }
 }
+
