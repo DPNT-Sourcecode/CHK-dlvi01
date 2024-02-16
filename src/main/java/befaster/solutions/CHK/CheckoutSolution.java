@@ -37,9 +37,6 @@ public class CheckoutSolution {
 
         // Handle this special offer:
         // any 3 of (S,T,X,Y,Z) for 45.
-
-        //int totalPrice = 0;
-
         StringBuilder sb = new StringBuilder();
 
         for (char c : skus.toCharArray()) {
@@ -119,8 +116,8 @@ public class CheckoutSolution {
             } else if (sku.equals('V')) {
                 checkoutSum = handleBulkSpecialOffer(count, checkoutSum, unitPrices, sku, 2, 90, 3, 130);
             }
-            // Handle remaining SKUs without special offers.
-            else {
+            // Handle remaining SKUs.
+            else if (!sku.equals('S') && !sku.equals('T') && !sku.equals('X') && !sku.equals('Y') && !sku.equals('Z')) {
                 if (unitPrices.containsKey(sku)) {
                     checkoutSum += count * unitPrices.get(sku);
                 }
@@ -391,4 +388,5 @@ public class CheckoutSolution {
         return sum;
     }
 }
+
 
