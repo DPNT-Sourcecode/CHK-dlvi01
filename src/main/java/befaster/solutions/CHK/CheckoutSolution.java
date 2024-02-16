@@ -62,7 +62,6 @@ public class CheckoutSolution {
 
     private static int handleSpecialOffer(Map<String, Integer> unitPrices, String sku, int count, int specialOfferUnitRequirement, int specialOfferPrice) {
         // Handle special offers.
-
         int sum = 0;
 
         int specialOfferCount = count / specialOfferUnitRequirement;
@@ -71,11 +70,15 @@ public class CheckoutSolution {
             sum += specialOfferCount * specialOfferPrice;
         }
 
-        // Handle if there are any extra items that are not covered bt the special offer, say a 4th A item.
-        count = count - specialOfferCount * specialOfferUnitRequirement;
-        sum += count * unitPrices.get(sku);
+        // Handle if there are any extra items that are not covered
+        // by the special offer, say a 4th A item.
+        if (((double) count / specialOfferUnitRequirement - specialOfferCount) > 0) {
+            count = count - specialOfferUnitRequirement;
+            sum += count * unitPrices.get(sku);
+        }
 
         return sum;
     }
 }
+
 

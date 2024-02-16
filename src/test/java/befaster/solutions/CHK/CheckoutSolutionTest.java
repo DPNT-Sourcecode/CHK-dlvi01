@@ -31,7 +31,7 @@ public class CheckoutSolutionTest {
 
         assertThat(checkout.checkout(items), equalTo(expectedSum));
     }
-    
+
     @Test
     public void test_checkout_with_special_offers() {
         String items = "A A A";
@@ -48,4 +48,5 @@ public class CheckoutSolutionTest {
         assertThat(checkout.checkout(items), equalTo(expectedSum));
     }
 }
+
 
