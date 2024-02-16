@@ -26,11 +26,11 @@ public class CheckoutSolution {
             if (sku == "A") {
                 int specialOfferUnitRequirement = 3;
                 int specialOfferPrice = 130;
-                checkoutSum += handleSpecialOffer(unitPrices, sku, count,  specialOfferUnitRequirement, specialOfferPrice);
+                checkoutSum += calculatePrice(unitPrices, sku, count,  specialOfferUnitRequirement, specialOfferPrice);
             } else if (sku == "B") {
                 int specialOfferUnitRequirement = 2;
                 int specialOfferPrice = 45;
-                checkoutSum += handleSpecialOffer(unitPrices, sku, count,  specialOfferUnitRequirement, specialOfferPrice);
+                checkoutSum += calculatePrice(unitPrices, sku, count,  specialOfferUnitRequirement, specialOfferPrice);
             } else {
                 checkoutSum += count * unitPrices.get(sku);
             }
@@ -60,12 +60,12 @@ public class CheckoutSolution {
         return skuCounts;
     }
 
-    private static int handleSpecialOffer(Map<String, Integer> unitPrices, String sku, int count, int specialOfferUnitRequirement, int specialOfferPrice) {
-        // Handle special offers.
+    private static int calculatePrice(Map<String, Integer> unitPrices, String sku, int count, int specialOfferUnitRequirement, int specialOfferPrice) {
         int sum = 0;
 
         int specialOfferCount = count / specialOfferUnitRequirement;
 
+        // Handle special offers.
         if (specialOfferCount > 0) {
             sum += specialOfferCount * specialOfferPrice;
         }
@@ -80,5 +80,6 @@ public class CheckoutSolution {
         return sum;
     }
 }
+
 
 
