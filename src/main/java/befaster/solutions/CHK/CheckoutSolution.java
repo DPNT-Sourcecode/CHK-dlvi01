@@ -63,13 +63,7 @@ public class CheckoutSolution {
                     }
                 }
             } else if (sku.equals('F') && (count / 2 > 0)) {
-                    while (count > 0 && count / 2 > 0) {
-                        count = count - 2;
-                        checkoutSum += 2 * unitPrices.get(sku);
-
-                        // 1 F is free.
-                        count = count - 1;
-                    }
+                checkoutSum += handleFSpecialOffer(count, unitPrices, sku);
             }
             // Handle remaining SKUs without special offers.
             else {
@@ -80,6 +74,20 @@ public class CheckoutSolution {
         }
 
         return checkoutSum;
+    }
+
+    private static int handleFSpecialOffer(int count, Map<Character, Integer> unitPrices, Character sku) {
+        // Handle 2F get one F free special offer.
+
+        int sum = 0;
+        while (count > 0 && count / 2 > 0) {
+            count = count - 2;
+            sum += 2 * unitPrices.get(sku);
+
+            // 1 F is free.
+            count = count - 1;
+        }
+        return sum;
     }
 
     private int handleASpecialOffer(Map<Character, Integer> unitPrices, Character sku, int count, int specialOffer3AUnitRequirement, int specialOffer3APrice, int specialOffer5AUnitRequirement, int specialOffer5APrice) {
@@ -183,5 +191,6 @@ public class CheckoutSolution {
         return sum;
     }
 }
+
 
 
