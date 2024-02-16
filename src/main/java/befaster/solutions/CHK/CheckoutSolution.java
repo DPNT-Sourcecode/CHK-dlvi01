@@ -40,30 +40,9 @@ public class CheckoutSolution {
             int count = entry.getValue();
 
             if (sku.equals('A')) {
-                int specialOffer3AUnitRequirement = 3;
-                int specialOffer3APrice = 130;
-
-                int specialOffer5AUnitRequirement = 5;
-                int specialOffer5APrice = 200;
-
-                if (isSpecialOfferApplicable(count, specialOffer3AUnitRequirement) || isSpecialOfferApplicable(count, specialOffer5AUnitRequirement)) {
-                    checkoutSum += handleASpecialOffer(unitPrices, sku, count, specialOffer3AUnitRequirement, specialOffer3APrice, specialOffer5AUnitRequirement, specialOffer5APrice);
-                } else {
-                    if (unitPrices.containsKey(sku)) {
-                        checkoutSum += count * unitPrices.get(sku);
-                    }
-                }
+                checkoutSum = handleAPriceCalculation(count, checkoutSum, unitPrices, sku);
             } else if (sku.equals('B')) {
-                int specialOfferUnitRequirement = 2;
-                int specialOfferPrice = 45;
-
-                if (isSpecialOfferApplicable(count, specialOfferUnitRequirement)) {
-                    checkoutSum += handleBSpecialOffer(unitPrices, sku, count, specialOfferUnitRequirement, specialOfferPrice);
-                } else {
-                    if (unitPrices.containsKey(sku)) {
-                        checkoutSum += count * unitPrices.get(sku);
-                    }
-                }
+                checkoutSum = handleBPriceCalculation(count, checkoutSum, unitPrices, sku);
             } else if (sku.equals('F') && (count / fSpecialOfferUnitRequirement > 0)) {
                 checkoutSum += handleFSpecialOffer(count, unitPrices, sku, fSpecialOfferUnitRequirement);
             }
@@ -75,6 +54,25 @@ public class CheckoutSolution {
             }
         }
 
+        return checkoutSum;
+    }
+
+    private int handleAPriceCalculation(int count, int checkoutSum, Map<Character, Integer> unitPrices, Character sku) {
+        // Handles price calculation for A items, including special offer calculation.
+
+        int specialOffer3AUnitRequirement = 3;
+        int specialOffer3APrice = 130;
+
+        int specialOffer5AUnitRequirement = 5;
+        int specialOffer5APrice = 200;
+
+        if (isSpecialOfferApplicable(count, specialOffer3AUnitRequirement) || isSpecialOfferApplicable(count, specialOffer5AUnitRequirement)) {
+            checkoutSum += handleASpecialOffer(unitPrices, sku, count, specialOffer3AUnitRequirement, specialOffer3APrice, specialOffer5AUnitRequirement, specialOffer5APrice);
+        } else {
+            if (unitPrices.containsKey(sku)) {
+                checkoutSum += count * unitPrices.get(sku);
+            }
+        }
         return checkoutSum;
     }
 
@@ -109,6 +107,22 @@ public class CheckoutSolution {
         }
 
         return sum;
+    }
+
+    private static int handleBPriceCalculation(int count, int checkoutSum, Map<Character, Integer> unitPrices, Character sku) {
+        // Handles price calculation for B items, including special offer calculation.
+
+        int specialOfferUnitRequirement = 2;
+        int specialOfferPrice = 45;
+
+        if (isSpecialOfferApplicable(count, specialOfferUnitRequirement)) {
+            checkoutSum += handleBSpecialOffer(unitPrices, sku, count, specialOfferUnitRequirement, specialOfferPrice);
+        } else {
+            if (unitPrices.containsKey(sku)) {
+                checkoutSum += count * unitPrices.get(sku);
+            }
+        }
+        return checkoutSum;
     }
 
     private boolean hasNonAlphabeticAndLowercaseChars(String skus) {
@@ -195,4 +209,5 @@ public class CheckoutSolution {
         return sum;
     }
 }
+
 
