@@ -5,6 +5,10 @@ import java.util.Map;
 
 public class CheckoutSolution {
     public Integer checkout(String skus) {
+        if (skus.isBlank()) {
+            return 0;
+        }
+
         // This variable represents the total checkout value of the items.
         int checkoutSum = 0;
 
@@ -95,3 +99,4 @@ public class CheckoutSolution {
         return sum;
     }
 }
+
