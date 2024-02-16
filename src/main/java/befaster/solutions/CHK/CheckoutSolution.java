@@ -23,6 +23,10 @@ public class CheckoutSolution {
         // Store SKUs in a HashMap, so we can identify if there are multiples of 3As, or 2Bs, for example.
         Map<Character, Integer> skuCounts = getSkuCounts(skus);
 
+        // Handle this special offer:
+        // any 3 of (S,T,X,Y,Z) for 45
+        checkoutSum = handleSpecialOfferAny3For45(skuCounts);
+
         // For every 2 pieces of E, 1 B is received for free.
         skuCounts = handleSpecialOffer1FreeFor3SpecificItems(skuCounts, 'E', 'B', 2);
 
@@ -194,6 +198,23 @@ public class CheckoutSolution {
         return skuCounts;
     }
 
+    private int handleSpecialOfferAny3For45(Map<Character, Integer> skuCounts) {
+        // Handle this special offer:
+        // any 3 of (S,T,X,Y,Z) for 45.
+
+        int sCount = skuCounts.get('S');
+        int tCount = skuCounts.get('T');
+        int xCount = skuCounts.get('X');
+        int yCount = skuCounts.get('Y');
+        int zCount = skuCounts.get('Z');
+
+        int sum = sCount + tCount + xCount + yCount + zCount;
+
+        int multiplesOfThree = sum / 3;
+
+        return 0;
+    }
+
     private Map<Character, Integer> handleSpecialOffer1FreeFor3SpecificItems(Map<Character, Integer> skuCounts, Character itemThreeIsNeededOf, Character freeItem, int numOfItemsNeededToQualifyForFree) {
         // Handles the special offer where a specific number of items get 1 different kind of item for free.
 
@@ -253,3 +274,4 @@ public class CheckoutSolution {
         return sum;
     }
 }
+

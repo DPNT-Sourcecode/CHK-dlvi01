@@ -1,6 +1,5 @@
 package befaster.solutions.CHK;
 
-import befaster.solutions.HLO.HelloSolution;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -273,7 +272,7 @@ public class CheckoutSolutionTest {
     }
 
     @Test
-    public void test_checkout_with_3_A_special_offers() {
+    public void test_checkout_with_3_A_special_offer() {
         String items = "AAA";
         int expectedSum = 130;
 
@@ -281,7 +280,7 @@ public class CheckoutSolutionTest {
     }
 
     @Test
-    public void test_checkout_with_5_A_special_offers() {
+    public void test_checkout_with_5_A_special_offer() {
         String items = "AAAAA";
         int expectedSum = 200;
 
@@ -289,7 +288,7 @@ public class CheckoutSolutionTest {
     }
 
     @Test
-    public void test_checkout_with_6_A_special_offers() {
+    public void test_checkout_with_6_A_special_offer() {
         String items = "AAAAAA";
         int expectedSum = 250;
 
@@ -297,7 +296,7 @@ public class CheckoutSolutionTest {
     }
 
     @Test
-    public void test_checkout_with_8_A_special_offers() {
+    public void test_checkout_with_8_A_special_offer() {
         String items = "AAAAAAAA";
         int expectedSum = 330;
 
@@ -305,7 +304,7 @@ public class CheckoutSolutionTest {
     }
 
     @Test
-    public void test_checkout_with_2_E_special_offers_and_B_comes_for_free() {
+    public void test_checkout_with_2_E_special_offer_and_B_comes_for_free() {
         String items = "EEB";
         int expectedSum = 80;
 
@@ -313,7 +312,7 @@ public class CheckoutSolutionTest {
     }
 
     @Test
-    public void test_checkout_with_2_E_special_offers_and_no_B_bought() {
+    public void test_checkout_with_2_E_special_offer_and_no_B_bought() {
         String items = "EE";
         int expectedSum = 80;
 
@@ -321,7 +320,7 @@ public class CheckoutSolutionTest {
     }
 
     @Test
-    public void test_checkout_with_2_E_special_offers_and_B_comes_for_free_but_extra_B_has_a_cost() {
+    public void test_checkout_with_2_E_special_offer_and_B_comes_for_free_but_extra_B_has_a_cost() {
         String items = "EEBB";
         int expectedSum = 110;
 
@@ -329,7 +328,7 @@ public class CheckoutSolutionTest {
     }
 
     @Test
-    public void test_checkout_with_special_offers_and_multiple_items() {
+    public void test_checkout_with_special_offer_and_multiple_items() {
         String items = "AAACD";
         int expectedSum = 165;
 
@@ -337,7 +336,7 @@ public class CheckoutSolutionTest {
     }
 
     @Test
-    public void test_large_checkout_with_multiple_special_offers_and_multiple_items() {
+    public void test_large_checkout_with_multiple_special_offer_and_multiple_items() {
         String items = "ABCDCBAABCABBAAA";
         int expectedSum = 495;
 
@@ -345,7 +344,7 @@ public class CheckoutSolutionTest {
     }
 
     @Test
-    public void test_checkout_with_5_H_special_offers() {
+    public void test_checkout_with_5_H_special_offer() {
         String items = "HHHHH";
         int expectedSum = 45;
 
@@ -353,7 +352,7 @@ public class CheckoutSolutionTest {
     }
 
     @Test
-    public void test_checkout_with_10_H_special_offers() {
+    public void test_checkout_with_10_H_special_offer() {
         String items = "HHHHHHHHHH";
         int expectedSum = 80;
 
@@ -361,7 +360,7 @@ public class CheckoutSolutionTest {
     }
 
     @Test
-    public void test_checkout_with_2_K_special_offers() {
+    public void test_checkout_with_2_K_special_offer() {
         String items = "KK";
         int expectedSum = 150;
 
@@ -369,7 +368,7 @@ public class CheckoutSolutionTest {
     }
 
     @Test
-    public void test_checkout_with_3_N_1_M_free_special_offers() {
+    public void test_checkout_with_3_N_1_M_free_special_offer() {
         String items = "NNNM";
         int expectedSum = 120;
 
@@ -377,7 +376,7 @@ public class CheckoutSolutionTest {
     }
 
     @Test
-    public void test_checkout_with_5_P_special_offers() {
+    public void test_checkout_with_5_P_special_offer() {
         String items = "PPPPP";
         int expectedSum = 200;
 
@@ -385,7 +384,7 @@ public class CheckoutSolutionTest {
     }
 
     @Test
-    public void test_checkout_with_3_Q_special_offers() {
+    public void test_checkout_with_3_Q_special_offer() {
         String items = "QQQ";
         int expectedSum = 80;
 
@@ -393,7 +392,7 @@ public class CheckoutSolutionTest {
     }
 
     @Test
-    public void test_checkout_with_3_R_1_Q_free_special_offers() {
+    public void test_checkout_with_3_R_1_Q_free_special_offer() {
         String items = "RRRQ";
         int expectedSum = 150;
 
@@ -401,7 +400,7 @@ public class CheckoutSolutionTest {
     }
 
     @Test
-    public void test_checkout_with_3_U_1_U_free_special_offers() {
+    public void test_checkout_with_3_U_1_U_free_special_offer() {
         String items = "UUU";
         int expectedSum = 120;
 
@@ -409,7 +408,7 @@ public class CheckoutSolutionTest {
     }
 
     @Test
-    public void test_checkout_with_4_U_1_U_free_special_offers() {
+    public void test_checkout_with_4_U_1_U_free_special_offer() {
         String items = "UUUU";
         int expectedSum = 120;
 
@@ -417,7 +416,7 @@ public class CheckoutSolutionTest {
     }
 
     @Test
-    public void test_checkout_with_2_V_special_offers() {
+    public void test_checkout_with_2_V_special_offer() {
         String items = "VV";
         int expectedSum = 90;
 
@@ -425,9 +424,33 @@ public class CheckoutSolutionTest {
     }
 
     @Test
-    public void test_checkout_with_3_V_special_offers() {
+    public void test_checkout_with_3_V_special_offer() {
         String items = "VVV";
         int expectedSum = 130;
+
+        assertThat(checkout.checkout(items), equalTo(expectedSum));
+    }
+
+    @Test
+    public void test_checkout_any_3_special_offer_first_variant() {
+        String items = "STX";
+        int expectedSum = 45;
+
+        assertThat(checkout.checkout(items), equalTo(expectedSum));
+    }
+
+    @Test
+    public void test_checkout_any_3_special_offer_second_variant() {
+        String items = "XYZ";
+        int expectedSum = 45;
+
+        assertThat(checkout.checkout(items), equalTo(expectedSum));
+    }
+
+    @Test
+    public void test_checkout_any_3_special_offer_multiple_offers() {
+        String items = "XYZSTX";
+        int expectedSum = 90;
 
         assertThat(checkout.checkout(items), equalTo(expectedSum));
     }
@@ -465,3 +488,4 @@ public class CheckoutSolutionTest {
     }
 
 }
+
