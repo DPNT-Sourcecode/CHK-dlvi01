@@ -231,11 +231,11 @@ public class CheckoutSolution {
 
 
 
-        int sCount = skuCounts.get('S');
-        int tCount = skuCounts.get('T');
-        int xCount = skuCounts.get('X');
-        int yCount = skuCounts.get('Y');
-        int zCount = skuCounts.get('Z');
+        int sCount = skuCounts.getOrDefault('S', 0);
+        int tCount = skuCounts.getOrDefault('T', 0);
+        int xCount = skuCounts.getOrDefault('X', 0);
+        int yCount = skuCounts.getOrDefault('Y', 0);
+        int zCount = skuCounts.getOrDefault('Z', 0);
 
         int sum = sCount + tCount + xCount + yCount + zCount;
 
@@ -334,4 +334,5 @@ public class CheckoutSolution {
         return sum;
     }
 }
+
 
