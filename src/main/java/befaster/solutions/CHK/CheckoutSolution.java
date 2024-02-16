@@ -32,10 +32,8 @@ public class CheckoutSolution {
         // For every 3 pieces of R, 1 Q is received for free.
         skuCounts = handleSpecialOffer1FreeFor3SpecificItems(skuCounts, 'R', 'Q', 3);
 
-        // For every 3 pieces of U, 1 U is received for free.
-        skuCounts = handleSpecialOffer1FreeFor3SpecificItems(skuCounts, 'U', 'U', 3);
-
         int fSpecialOfferUnitRequirement = 2;
+        int uSpecialOfferUnitRequirement = 3;
 
         // Calculate the checkout sum.
         for (Map.Entry<Character, Integer> entry : skuCounts.entrySet()) {
@@ -47,7 +45,7 @@ public class CheckoutSolution {
             } else if (sku.equals('B')) {
                 checkoutSum = handleMultiSKUPriceCalculation(count, checkoutSum, unitPrices, sku, 2, 45);
             } else if (sku.equals('F') && (count / fSpecialOfferUnitRequirement > 0)) {
-                checkoutSum += handleFSpecialOffer(count, unitPrices, sku, fSpecialOfferUnitRequirement);
+                checkoutSum += handleMultipleOfSameTypeGetOneSameTypeFreeOffer(count, unitPrices, sku, fSpecialOfferUnitRequirement);
             } else if (sku.equals('H')) {
                 checkoutSum = handleBulkSpecialOffer(count, checkoutSum, unitPrices, sku, 5, 45, 10, 80);
             } else if (sku.equals('K')) {
@@ -56,6 +54,8 @@ public class CheckoutSolution {
                 checkoutSum = handleMultiSKUPriceCalculation(count, checkoutSum, unitPrices, sku, 5, 200);
             } else if (sku.equals('Q')) {
                 checkoutSum = handleMultiSKUPriceCalculation(count, checkoutSum, unitPrices, sku, 3, 80);
+            } else if (sku.equals('U') && (count / uSpecialOfferUnitRequirement > 0)) {
+                checkoutSum += handleMultipleOfSameTypeGetOneSameTypeFreeOffer(count, unitPrices, sku, uSpecialOfferUnitRequirement);
             } else if (sku.equals('V')) {
                 checkoutSum = handleBulkSpecialOffer(count, checkoutSum, unitPrices, sku, 2, 90, 3, 130);
             }
@@ -99,6 +99,15 @@ public class CheckoutSolution {
         unitPrices.put('Y', 10);
         unitPrices.put('Z', 50);
         return unitPrices;
+    }
+
+    private boolean hasNonAlphabeticAndLowercaseChars(String skus) {
+        for (char c : skus.toCharArray()) {
+            if (!Character.isLetter(c) || Character.isLowerCase(c)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private int handleBulkSpecialOffer(int count, int checkoutSum, Map<Character, Integer> unitPrices, Character sku, int specialOfferFirstUnitRequirement, int specialOfferFirstPrice, int specialOfferSecondUnitRequirement, int specialOfferSecondPrice) {
@@ -165,13 +174,8 @@ public class CheckoutSolution {
         return checkoutSum;
     }
 
-    private boolean hasNonAlphabeticAndLowercaseChars(String skus) {
-        for (char c : skus.toCharArray()) {
-            if (!Character.isLetter(c) || Character.isLowerCase(c)) {
-                return true;
-            }
-        }
-        return false;
+    private static boolean isSpecialOfferApplicable(int count, int specialOfferUnitRequirement) {
+        return count / specialOfferUnitRequirement > 0;
     }
 
     private static Map<Character, Integer> getSkuCounts(String skus) {
@@ -209,10 +213,6 @@ public class CheckoutSolution {
         return skuCounts;
     }
 
-    private static boolean isSpecialOfferApplicable(int count, int specialOfferUnitRequirement) {
-        return count / specialOfferUnitRequirement > 0;
-    }
-
     private static int handleMultipleOfSameItemSpecialOffer(Map<Character, Integer> unitPrices, Character sku, int count, int specialOfferUnitRequirement, int specialOfferPrice) {
         int sum = 0;
 
@@ -233,19 +233,19 @@ public class CheckoutSolution {
         return sum;
     }
 
-    private static int handleFSpecialOffer(int count, Map<Character, Integer> unitPrices, Character sku, int specialOfferUnitRequirement) {
-        // Handle 2F get one F free special offer.
+    private static int handleMultipleOfSameTypeGetOneSameTypeFreeOffer(int count, Map<Character, Integer> unitPrices, Character sku, int specialOfferUnitRequirement) {
+        // Handle multiple item, get one item free (of the same type) special offer.
 
         int sum = 0;
         while (count > 0 && count / specialOfferUnitRequirement > 0) {
             count -= specialOfferUnitRequirement;
             sum += specialOfferUnitRequirement * unitPrices.get(sku);
 
-            // 1 F is free.
+            // 1 unit is free.
             count = count - 1;
         }
 
-        // Handle any remaining Fs which were not a multiple of 2.
+        // Handle any remaining units which were not a multiple of 2.
         if (count > 0) {
             sum += count * unitPrices.get(sku);
         }
@@ -253,5 +253,6 @@ public class CheckoutSolution {
         return sum;
     }
 }
+
 
 
