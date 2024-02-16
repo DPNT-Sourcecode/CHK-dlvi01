@@ -32,6 +32,8 @@ public class CheckoutSolution {
         // For every 2 pieces of E, one B is received for free.
         skuCounts = handleSpecialOffer1BFor2Es(skuCounts);
 
+        int fSpecialOfferUnitRequirement = 2;
+
         // Calculate the checkout sum.
         for (Map.Entry<Character, Integer> entry : skuCounts.entrySet()) {
             Character sku = entry.getKey();
@@ -62,8 +64,8 @@ public class CheckoutSolution {
                         checkoutSum += count * unitPrices.get(sku);
                     }
                 }
-            } else if (sku.equals('F') && (count / 2 > 0)) {
-                checkoutSum += handleFSpecialOffer(count, unitPrices, sku);
+            } else if (sku.equals('F') && (count / fSpecialOfferUnitRequirement > 0)) {
+                checkoutSum += handleFSpecialOffer(count, unitPrices, sku, fSpecialOfferUnitRequirement);
             }
             // Handle remaining SKUs without special offers.
             else {
@@ -74,20 +76,6 @@ public class CheckoutSolution {
         }
 
         return checkoutSum;
-    }
-
-    private static int handleFSpecialOffer(int count, Map<Character, Integer> unitPrices, Character sku) {
-        // Handle 2F get one F free special offer.
-
-        int sum = 0;
-        while (count > 0 && count / 2 > 0) {
-            count = count - 2;
-            sum += 2 * unitPrices.get(sku);
-
-            // 1 F is free.
-            count = count - 1;
-        }
-        return sum;
     }
 
     private int handleASpecialOffer(Map<Character, Integer> unitPrices, Character sku, int count, int specialOffer3AUnitRequirement, int specialOffer3APrice, int specialOffer5AUnitRequirement, int specialOffer5APrice) {
@@ -151,12 +139,14 @@ public class CheckoutSolution {
     private Map<Character, Integer> handleSpecialOffer1BFor2Es(Map<Character, Integer> skuCounts) {
         // Handle the special offer where 2Es get 1 B for free.
 
+        int specialOfferUnitRequirement = 2;
+
         if (skuCounts.containsKey('E') && skuCounts.containsKey('B')) {
             int eCount = skuCounts.get('E');
             int bCount = skuCounts.get('B');
 
             // Calculate the number of free Bs.
-            int numOfFreeBs = eCount / 2;
+            int numOfFreeBs = eCount / specialOfferUnitRequirement;
 
             // Deduct the number of free Bs from bCount, put it back into the skuCounts map.
             // The remaining Bs will cost the customer.
@@ -190,7 +180,19 @@ public class CheckoutSolution {
 
         return sum;
     }
+
+    private static int handleFSpecialOffer(int count, Map<Character, Integer> unitPrices, Character sku, int specialOfferUnitRequirement) {
+        // Handle 2F get one F free special offer.
+
+        int sum = 0;
+        while (count > 0 && count / 2 > 0) {
+            count = count - specialOfferUnitRequirement;
+            sum += specialOfferUnitRequirement * unitPrices.get(sku);
+
+            // 1 F is free.
+            count = count - 1;
+        }
+        return sum;
+    }
 }
-
-
 
