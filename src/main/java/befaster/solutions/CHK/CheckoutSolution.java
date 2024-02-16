@@ -1,9 +1,7 @@
 package befaster.solutions.CHK;
 
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
 
 public class CheckoutSolution {
     public Integer checkout(String skus) {
@@ -73,43 +71,6 @@ public class CheckoutSolution {
             }
         }
 
-        return checkoutSum;
-    }
-
-    private static int handleAny3SpecialOffer(String skus, int checkoutSum, Map<Character, Integer> skuCounts, Map<Character, Integer> unitPrices) {
-        StringBuilder sb = new StringBuilder();
-
-        for (char c : skus.toCharArray()) {
-            if (c == 'S' || c == 'T' || c == 'X' || c == 'Y' || c == 'Z') {
-                sb.append(c);
-            }
-        }
-
-        int lastDivisibleIndex = 0;
-
-        for (int i = 0; i < sb.length(); i++) {
-            if (i != 0 && (i+1) % 3 == 0) {
-                checkoutSum += 45;
-
-                int currentCharCount = skuCounts.get(sb.charAt(i));
-                currentCharCount--;
-                skuCounts.put(sb.charAt(i), currentCharCount);
-
-                int prevCharCount = skuCounts.get(sb.charAt(i-1));
-                prevCharCount--;
-                skuCounts.put(sb.charAt(i-1), prevCharCount);
-
-                int prevPrevCharCount = skuCounts.get(sb.charAt(i-2));
-                prevPrevCharCount--;
-                skuCounts.put(sb.charAt(i-2), prevPrevCharCount);
-
-                lastDivisibleIndex = i + 1;
-            }
-        }
-
-        for (int j = lastDivisibleIndex; j < sb.length(); j++) {
-            checkoutSum += unitPrices.get(sb.charAt(j));
-        }
         return checkoutSum;
     }
 
@@ -237,83 +198,44 @@ public class CheckoutSolution {
         return skuCounts;
     }
 
-//    private int handleSpecialOfferAny3For45(Map<Character, Integer> skuCounts, String str) {
-//
-//
+    private static int handleAny3SpecialOffer(String skus, int checkoutSum, Map<Character, Integer> skuCounts, Map<Character, Integer> unitPrices) {
+        // Handles any 3 of (S,T,X,Y,Z) for 45 special offer.
 
+        StringBuilder sb = new StringBuilder();
 
+        for (char c : skus.toCharArray()) {
+            if (c == 'S' || c == 'T' || c == 'X' || c == 'Y' || c == 'Z') {
+                sb.append(c);
+            }
+        }
 
-//
-//        int totalCount = 0;
-//        Set<Character> set = new HashSet<>();
-//
-//        char[] specialChars = new char[] {'S', 'T', 'X', 'Y', 'Z'};
-//
-//        for (char c : specialChars) {
-//            int newSum = totalCount + skuCounts.getOrDefault(c, 0);
-//
-//            if(newSum % 3 == 0) {
-//                totalCount += skuCounts.get(c);
-//                set.add(c);
-//            }
-//        }
-//
-////        total
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//        int sCount = skuCounts.getOrDefault('S', 0);
-//        int tCount = skuCounts.getOrDefault('T', 0);
-//        int xCount = skuCounts.getOrDefault('X', 0);
-//        int yCount = skuCounts.getOrDefault('Y', 0);
-//        int zCount = skuCounts.getOrDefault('Z', 0);
-//
-//        int sum = sCount + tCount + xCount + yCount + zCount;
-//
-//        double multiplesOfThree = (double) sum / 3;
-//
-//        boolean isWholeNumber = multiplesOfThree == (int) multiplesOfThree;
+        int lastDivisibleIndex = 0;
 
-//        if (isWholeNumber) {
-//            skuCounts.put('S', 0);
-//            skuCounts.put('T', 0);
-//            skuCounts.put('X', 0);
-//            skuCounts.put('Y', 0);
-//            skuCounts.put('Z', 0);
-//        } else {
-//
-//        }
+        for (int i = 0; i < sb.length(); i++) {
+            if (i != 0 && (i + 1) % 3 == 0) {
+                checkoutSum += 45;
 
-//        int cost = (int) multiplesOfThree * 45;
+                int currentCharCount = skuCounts.get(sb.charAt(i));
+                currentCharCount--;
+                skuCounts.put(sb.charAt(i), currentCharCount);
 
-        // PLAN:
-        // Check how many are there of S T X Y Z in total.
-        // if isWHoleNumber, then great,
-        // multiply the division result by 45, that's the total price of these items.
+                int prevCharCount = skuCounts.get(sb.charAt(i - 1));
+                prevCharCount--;
+                skuCounts.put(sb.charAt(i - 1), prevCharCount);
 
-        // Else:
-            // Find which item or items has a number that is not divisible by 3.
-        // sum = 0;
-        // Iterate over the map's entry set:
-            // Add the current value to sum
+                int prevPrevCharCount = skuCounts.get(sb.charAt(i - 2));
+                prevPrevCharCount--;
+                skuCounts.put(sb.charAt(i - 2), prevPrevCharCount);
 
+                lastDivisibleIndex = i + 1;
+            }
+        }
 
-//
-//
-//
-//
-
-//        return 0;
-//    }
+        for (int j = lastDivisibleIndex; j < sb.length(); j++) {
+            checkoutSum += unitPrices.get(sb.charAt(j));
+        }
+        return checkoutSum;
+    }
 
     private Map<Character, Integer> handleSpecialOffer1FreeFor3SpecificItems(Map<Character, Integer> skuCounts, Character itemThreeIsNeededOf, Character freeItem, int numOfItemsNeededToQualifyForFree) {
         // Handles the special offer where a specific number of items get 1 different kind of item for free.
@@ -374,6 +296,7 @@ public class CheckoutSolution {
         return sum;
     }
 }
+
 
 
 
