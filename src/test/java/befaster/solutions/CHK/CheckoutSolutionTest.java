@@ -65,7 +65,167 @@ public class CheckoutSolutionTest {
     }
 
     @Test
-    public void test_checkout_with_one_F_free_as_special_offer() {
+    public void test_checkout_with_one_item_G() {
+        String items = "G";
+        int expectedSum = 20;
+
+        assertThat(checkout.checkout(items), equalTo(expectedSum));
+    }
+
+    @Test
+    public void test_checkout_with_one_item_H() {
+        String items = "H";
+        int expectedSum = 10;
+
+        assertThat(checkout.checkout(items), equalTo(expectedSum));
+    }
+
+    @Test
+    public void test_checkout_with_one_item_I() {
+        String items = "I";
+        int expectedSum = 35;
+
+        assertThat(checkout.checkout(items), equalTo(expectedSum));
+    }
+
+    @Test
+    public void test_checkout_with_one_item_J() {
+        String items = "J";
+        int expectedSum = 60;
+
+        assertThat(checkout.checkout(items), equalTo(expectedSum));
+    }
+
+    @Test
+    public void test_checkout_with_one_item_K() {
+        String items = "K";
+        int expectedSum = 80;
+
+        assertThat(checkout.checkout(items), equalTo(expectedSum));
+    }
+
+    @Test
+    public void test_checkout_with_one_item_L() {
+        String items = "L";
+        int expectedSum = 90;
+
+        assertThat(checkout.checkout(items), equalTo(expectedSum));
+    }
+
+    @Test
+    public void test_checkout_with_one_item_M() {
+        String items = "M";
+        int expectedSum = 15;
+
+        assertThat(checkout.checkout(items), equalTo(expectedSum));
+    }
+
+    @Test
+    public void test_checkout_with_one_item_N() {
+        String items = "N";
+        int expectedSum = 40;
+
+        assertThat(checkout.checkout(items), equalTo(expectedSum));
+    }
+
+    @Test
+    public void test_checkout_with_one_item_O() {
+        String items = "O";
+        int expectedSum = 10;
+
+        assertThat(checkout.checkout(items), equalTo(expectedSum));
+    }
+
+    @Test
+    public void test_checkout_with_one_item_P() {
+        String items = "P";
+        int expectedSum = 50;
+
+        assertThat(checkout.checkout(items), equalTo(expectedSum));
+    }
+
+    @Test
+    public void test_checkout_with_one_item_Q() {
+        String items = "Q";
+        int expectedSum = 30;
+
+        assertThat(checkout.checkout(items), equalTo(expectedSum));
+    }
+
+    @Test
+    public void test_checkout_with_one_item_R() {
+        String items = "R";
+        int expectedSum = 50;
+
+        assertThat(checkout.checkout(items), equalTo(expectedSum));
+    }
+
+    @Test
+    public void test_checkout_with_one_item_S() {
+        String items = "S";
+        int expectedSum = 30;
+
+        assertThat(checkout.checkout(items), equalTo(expectedSum));
+    }
+
+    @Test
+    public void test_checkout_with_one_item_T() {
+        String items = "T";
+        int expectedSum = 20;
+
+        assertThat(checkout.checkout(items), equalTo(expectedSum));
+    }
+
+    @Test
+    public void test_checkout_with_one_item_U() {
+        String items = "U";
+        int expectedSum = 40;
+
+        assertThat(checkout.checkout(items), equalTo(expectedSum));
+    }
+
+    @Test
+    public void test_checkout_with_one_item_V() {
+        String items = "V";
+        int expectedSum = 50;
+
+        assertThat(checkout.checkout(items), equalTo(expectedSum));
+    }
+
+    @Test
+    public void test_checkout_with_one_item_W() {
+        String items = "W";
+        int expectedSum = 20;
+
+        assertThat(checkout.checkout(items), equalTo(expectedSum));
+    }
+
+    @Test
+    public void test_checkout_with_one_item_X() {
+        String items = "X";
+        int expectedSum = 90;
+
+        assertThat(checkout.checkout(items), equalTo(expectedSum));
+    }
+
+    @Test
+    public void test_checkout_with_one_item_Y() {
+        String items = "Y";
+        int expectedSum = 10;
+
+        assertThat(checkout.checkout(items), equalTo(expectedSum));
+    }
+
+    @Test
+    public void test_checkout_with_one_item_Z() {
+        String items = "Z";
+        int expectedSum = 50;
+
+        assertThat(checkout.checkout(items), equalTo(expectedSum));
+    }
+
+    @Test
+    public void test_checkout_with_three_F_free_and_one_F_free_special_offer() {
         String items = "FFF";
         int expectedSum = 20;
 
@@ -185,6 +345,25 @@ public class CheckoutSolutionTest {
     }
 
     @Test
+    public void test_checkout_with_5_H_special_offers() {
+        String items = "HHHHH";
+        int expectedSum = 45;
+
+        assertThat(checkout.checkout(items), equalTo(expectedSum));
+    }
+
+    @Test
+    public void test_checkout_with_10_H_special_offers() {
+        String items = "HHHHHHHHHH";
+        int expectedSum = 80;
+
+        assertThat(checkout.checkout(items), equalTo(expectedSum));
+    }
+
+
+
+
+    @Test
     public void test_checkout_with_no_items() {
         String items = "";
         int expectedSum = 0;
@@ -217,4 +396,3 @@ public class CheckoutSolutionTest {
     }
 
 }
-
