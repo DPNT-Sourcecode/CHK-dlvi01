@@ -39,15 +39,15 @@ public class CheckoutSolution {
             if (sku.equals('A')) {
                 checkoutSum = handleAPriceCalculation(count, checkoutSum, unitPrices, sku);
             } else if (sku.equals('B')) {
-                checkoutSum = handleBPriceCalculation(count, checkoutSum, unitPrices, sku);
+                checkoutSum = handleMultiSKUPriceCalculation(count, checkoutSum, unitPrices, sku, 2, 45);
             } else if (sku.equals('F') && (count / fSpecialOfferUnitRequirement > 0)) {
                 checkoutSum += handleFSpecialOffer(count, unitPrices, sku, fSpecialOfferUnitRequirement);
             } else if (sku.equals('H')) {
                 checkoutSum = handleHPriceCalculation(count, checkoutSum, unitPrices, sku);
             } else if (sku.equals('K')) {
-                checkoutSum = handleKPriceCalculation(count, checkoutSum, unitPrices, sku);
+                checkoutSum = handleMultiSKUPriceCalculation(count, checkoutSum, unitPrices, sku, 2, 150);
             } else if (sku.equals('P')) {
-                checkoutSum = handlePPriceCalculation(count, checkoutSum, unitPrices, sku);
+                checkoutSum = handleMultiSKUPriceCalculation(count, checkoutSum, unitPrices, sku, 5, 200);
             }
             // Handle remaining SKUs without special offers.
             else {
@@ -143,22 +143,6 @@ public class CheckoutSolution {
         return sum;
     }
 
-    private static int handleBPriceCalculation(int count, int checkoutSum, Map<Character, Integer> unitPrices, Character sku) {
-        // Handles price calculation for B items, including special offer calculation.
-
-        int specialOfferUnitRequirement = 2;
-        int specialOfferPrice = 45;
-
-        if (isSpecialOfferApplicable(count, specialOfferUnitRequirement)) {
-            checkoutSum += handle2ForSpecialOffer(unitPrices, sku, count, specialOfferUnitRequirement, specialOfferPrice);
-        } else {
-            if (unitPrices.containsKey(sku)) {
-                checkoutSum += count * unitPrices.get(sku);
-            }
-        }
-        return checkoutSum;
-    }
-
     private int handleHPriceCalculation(int count, int checkoutSum, Map<Character, Integer> unitPrices, Character sku) {
         // Handles price calculation for H items, including special offer calculation.
 
@@ -178,30 +162,11 @@ public class CheckoutSolution {
         return checkoutSum;
     }
 
-    private static int handleKPriceCalculation(int count, int checkoutSum, Map<Character, Integer> unitPrices, Character sku) {
-        // Handles price calculation for K items, including special offer calculation.
-
-        int specialOfferUnitRequirement = 2;
-        int specialOfferPrice = 150;
+    private static int handleMultiSKUPriceCalculation(int count, int checkoutSum, Map<Character, Integer> unitPrices, Character sku, int specialOfferUnitRequirement, int specialOfferPrice) {
+        // Handles price calculation for a specific SKU, including special offer calculation.
 
         if (isSpecialOfferApplicable(count, specialOfferUnitRequirement)) {
-            checkoutSum += handle2ForSpecialOffer(unitPrices, sku, count, specialOfferUnitRequirement, specialOfferPrice);
-        } else {
-            if (unitPrices.containsKey(sku)) {
-                checkoutSum += count * unitPrices.get(sku);
-            }
-        }
-        return checkoutSum;
-    }
-
-    private static int handlePPriceCalculation(int count, int checkoutSum, Map<Character, Integer> unitPrices, Character sku) {
-        // Handles price calculation for P items, including special offer calculation.
-
-        int specialOfferUnitRequirement = 5;
-        int specialOfferPrice = 200;
-
-        if (isSpecialOfferApplicable(count, specialOfferUnitRequirement)) {
-            checkoutSum += handle2ForSpecialOffer(unitPrices, sku, count, specialOfferUnitRequirement, specialOfferPrice);
+            checkoutSum += handleMultipleOfSameItemSpecialOffer(unitPrices, sku, count, specialOfferUnitRequirement, specialOfferPrice);
         } else {
             if (unitPrices.containsKey(sku)) {
                 checkoutSum += count * unitPrices.get(sku);
@@ -258,7 +223,7 @@ public class CheckoutSolution {
         return count / specialOfferUnitRequirement > 0;
     }
 
-    private static int handle2ForSpecialOffer(Map<Character, Integer> unitPrices, Character sku, int count, int specialOfferUnitRequirement, int specialOfferPrice) {
+    private static int handleMultipleOfSameItemSpecialOffer(Map<Character, Integer> unitPrices, Character sku, int count, int specialOfferUnitRequirement, int specialOfferPrice) {
         int sum = 0;
 
         int specialOfferCount = count / specialOfferUnitRequirement;
@@ -298,6 +263,7 @@ public class CheckoutSolution {
         return sum;
     }
 }
+
 
 
 
