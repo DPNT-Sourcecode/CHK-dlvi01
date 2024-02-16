@@ -29,6 +29,12 @@ public class CheckoutSolution {
         // For every 3 pieces of N, 1 M is received for free.
         skuCounts = handleSpecialOffer1FreeFor3SpecificItems(skuCounts, 'N', 'M', 3);
 
+        // For every 3 pieces of R, 1 Q is received for free.
+        skuCounts = handleSpecialOffer1FreeFor3SpecificItems(skuCounts, 'R', 'Q', 3);
+
+        // For every 3 pieces of U, 1 U is received for free.
+        skuCounts = handleSpecialOffer1FreeFor3SpecificItems(skuCounts, 'U', 'U', 3);
+
         int fSpecialOfferUnitRequirement = 2;
 
         // Calculate the checkout sum.
@@ -48,6 +54,10 @@ public class CheckoutSolution {
                 checkoutSum = handleMultiSKUPriceCalculation(count, checkoutSum, unitPrices, sku, 2, 150);
             } else if (sku.equals('P')) {
                 checkoutSum = handleMultiSKUPriceCalculation(count, checkoutSum, unitPrices, sku, 5, 200);
+            } else if (sku.equals('Q')) {
+                checkoutSum = handleMultiSKUPriceCalculation(count, checkoutSum, unitPrices, sku, 3, 80);
+            } else if (sku.equals('V')) {
+
             }
             // Handle remaining SKUs without special offers.
             else {
@@ -263,7 +273,3 @@ public class CheckoutSolution {
         return sum;
     }
 }
-
-
-
-
