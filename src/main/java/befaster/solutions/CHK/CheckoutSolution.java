@@ -34,7 +34,9 @@ public class CheckoutSolution {
                 if (isSpecialOfferApplicable(count, specialOfferUnitRequirement)) {
                     checkoutSum += handleSpecialOffer(unitPrices, sku, count,  specialOfferUnitRequirement, specialOfferPrice);
                 } else {
-                    checkoutSum += count * unitPrices.get(sku);
+                    if (unitPrices.containsKey(sku)) {
+                        checkoutSum += count * unitPrices.get(sku);
+                    }
                 }
             } else if (sku.equals("B")) {
                 int specialOfferUnitRequirement = 2;
@@ -43,12 +45,16 @@ public class CheckoutSolution {
                 if (isSpecialOfferApplicable(count, specialOfferUnitRequirement)) {
                     checkoutSum += handleSpecialOffer(unitPrices, sku, count,  specialOfferUnitRequirement, specialOfferPrice);
                 } else {
-                    checkoutSum += count * unitPrices.get(sku);
+                    if (unitPrices.containsKey(sku)) {
+                        checkoutSum += count * unitPrices.get(sku);
+                    }
                 }
             }
             // Other SKUs have no special offer, so no need to check if a special offer is applicable.
             else {
-                checkoutSum += count * unitPrices.get(sku);
+                if (unitPrices.containsKey(sku)) {
+                    checkoutSum += count * unitPrices.get(sku);
+                }
             }
         }
 
@@ -99,5 +105,6 @@ public class CheckoutSolution {
         return sum;
     }
 }
+
 
 
