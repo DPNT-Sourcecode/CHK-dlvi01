@@ -50,7 +50,7 @@ public class CheckoutSolutionTest {
 
     @Test
     public void test_checkout_with_multiple_items() {
-        String items = "A B";
+        String items = "AB";
         int expectedSum = 80;
 
         assertThat(checkout.checkout(items), equalTo(expectedSum));
@@ -58,7 +58,7 @@ public class CheckoutSolutionTest {
 
     @Test
     public void test_checkout_with_special_offers() {
-        String items = "A A A";
+        String items = "AAA";
         int expectedSum = 130;
 
         assertThat(checkout.checkout(items), equalTo(expectedSum));
@@ -66,7 +66,7 @@ public class CheckoutSolutionTest {
 
     @Test
     public void test_checkout_with_special_offers_and_multiple_items() {
-        String items = "A A A C D";
+        String items = "AAACD";
         int expectedSum = 165;
 
         assertThat(checkout.checkout(items), equalTo(expectedSum));
@@ -105,5 +105,6 @@ public class CheckoutSolutionTest {
     }
 
 }
+
 
 
