@@ -26,59 +26,8 @@ public class CheckoutSolution {
         Map<Character, Integer> skuCounts = getSkuCounts(skus);
 
         // Handle this special offer:
-        // any 3 of (S,T,X,Y,Z) for 45
-        //checkoutSum = handleSpecialOfferAny3For45(skuCounts, skus);
-
-
-
-
-
-
-
-        // Handle this special offer:
         // any 3 of (S,T,X,Y,Z) for 45.
-        StringBuilder sb = new StringBuilder();
-
-        for (char c : skus.toCharArray()) {
-            if (c == 'S' || c == 'T' || c == 'X' || c == 'Y' || c == 'Z') {
-                sb.append(c);
-            }
-        }
-
-        int lastDivisibleIndex = 0;
-
-        for (int i = 0; i < sb.length(); i++) {
-            if (i != 0 && (i+1) % 3 == 0) {
-                checkoutSum += 45;
-
-                int currentCharCount = skuCounts.get(sb.charAt(i));
-                currentCharCount--;
-                skuCounts.put(sb.charAt(i), currentCharCount);
-
-                int prevCharCount = skuCounts.get(sb.charAt(i-1));
-                prevCharCount--;
-                skuCounts.put(sb.charAt(i-1), prevCharCount);
-
-                int prevPrevCharCount = skuCounts.get(sb.charAt(i-2));
-                prevPrevCharCount--;
-                skuCounts.put(sb.charAt(i-2), prevPrevCharCount);
-
-                lastDivisibleIndex = i;
-            }
-        }
-
-        for (int j = lastDivisibleIndex; j < sb.length(); j++) {
-            checkoutSum += unitPrices.get(sb.charAt(j));
-        }
-
-
-
-
-
-
-
-
-
+        checkoutSum = handleAny3SpecialOffer(skus, checkoutSum, skuCounts, unitPrices);
 
         // For every 2 pieces of E, 1 B is received for free.
         skuCounts = handleSpecialOffer1FreeFor3SpecificItems(skuCounts, 'E', 'B', 2);
@@ -124,6 +73,43 @@ public class CheckoutSolution {
             }
         }
 
+        return checkoutSum;
+    }
+
+    private static int handleAny3SpecialOffer(String skus, int checkoutSum, Map<Character, Integer> skuCounts, Map<Character, Integer> unitPrices) {
+        StringBuilder sb = new StringBuilder();
+
+        for (char c : skus.toCharArray()) {
+            if (c == 'S' || c == 'T' || c == 'X' || c == 'Y' || c == 'Z') {
+                sb.append(c);
+            }
+        }
+
+        int lastDivisibleIndex = 0;
+
+        for (int i = 0; i < sb.length(); i++) {
+            if (i != 0 && (i+1) % 3 == 0) {
+                checkoutSum += 45;
+
+                int currentCharCount = skuCounts.get(sb.charAt(i));
+                currentCharCount--;
+                skuCounts.put(sb.charAt(i), currentCharCount);
+
+                int prevCharCount = skuCounts.get(sb.charAt(i-1));
+                prevCharCount--;
+                skuCounts.put(sb.charAt(i-1), prevCharCount);
+
+                int prevPrevCharCount = skuCounts.get(sb.charAt(i-2));
+                prevPrevCharCount--;
+                skuCounts.put(sb.charAt(i-2), prevPrevCharCount);
+
+                lastDivisibleIndex = i + 1;
+            }
+        }
+
+        for (int j = lastDivisibleIndex; j < sb.length(); j++) {
+            checkoutSum += unitPrices.get(sb.charAt(j));
+        }
         return checkoutSum;
     }
 
@@ -388,6 +374,7 @@ public class CheckoutSolution {
         return sum;
     }
 }
+
 
 
 
