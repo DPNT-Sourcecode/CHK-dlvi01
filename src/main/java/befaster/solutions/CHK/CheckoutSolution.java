@@ -18,6 +18,7 @@ public class CheckoutSolution {
         unitPrices.put('B', 30);
         unitPrices.put('C', 20);
         unitPrices.put('D', 15);
+        unitPrices.put('E', 40);
 
         // If the skus string contains non-alphabetic characters and lowercase characters, then return -1.
         if (hasNonAlphabeticAndLowercaseChars(skus)) {
@@ -115,4 +116,5 @@ public class CheckoutSolution {
         return sum;
     }
 }
+
 
