@@ -201,30 +201,30 @@ public class CheckoutSolution {
     private int handleSpecialOfferAny3For45(Map<Character, Integer> skuCounts) {
         // Handle this special offer:
         // any 3 of (S,T,X,Y,Z) for 45.
-
-        int sCount = skuCounts.get('S');
-        int tCount = skuCounts.get('T');
-        int xCount = skuCounts.get('X');
-        int yCount = skuCounts.get('Y');
-        int zCount = skuCounts.get('Z');
-
-        int sum = sCount + tCount + xCount + yCount + zCount;
-
-        double multiplesOfThree = (double) sum / 3;
-
-        boolean isWholeNumber = multiplesOfThree == (int) multiplesOfThree;
-
-        if (isWholeNumber) {
-            skuCounts.put('S', 0);
-            skuCounts.put('T', 0);
-            skuCounts.put('X', 0);
-            skuCounts.put('Y', 0);
-            skuCounts.put('Z', 0);
-        } else {
-
-        }
-
-        int cost = (int) multiplesOfThree * 45;
+//
+//        int sCount = skuCounts.get('S');
+//        int tCount = skuCounts.get('T');
+//        int xCount = skuCounts.get('X');
+//        int yCount = skuCounts.get('Y');
+//        int zCount = skuCounts.get('Z');
+//
+//        int sum = sCount + tCount + xCount + yCount + zCount;
+//
+//        double multiplesOfThree = (double) sum / 3;
+//
+//        boolean isWholeNumber = multiplesOfThree == (int) multiplesOfThree;
+//
+//        if (isWholeNumber) {
+//            skuCounts.put('S', 0);
+//            skuCounts.put('T', 0);
+//            skuCounts.put('X', 0);
+//            skuCounts.put('Y', 0);
+//            skuCounts.put('Z', 0);
+//        } else {
+//
+//        }
+//
+//        int cost = (int) multiplesOfThree * 45;
 
         // PLAN:
         // Check how many are there of S T X Y Z in total.
@@ -305,3 +305,4 @@ public class CheckoutSolution {
         return sum;
     }
 }
+
