@@ -108,10 +108,11 @@ public class CheckoutSolution {
         // Handle if there are any extra items that are not covered
         // by the special offer, say a 4th A item.
         if (((double) count / specialOfferUnitRequirement - specialOfferCount) > 0) {
-            count = count - specialOfferUnitRequirement;
+            count = count - specialOfferUnitRequirement * specialOfferCount;
             sum += count * unitPrices.get(sku);
         }
 
         return sum;
     }
 }
+
