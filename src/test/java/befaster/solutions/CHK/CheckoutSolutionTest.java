@@ -129,9 +129,9 @@ public class CheckoutSolutionTest {
     }
 
     @Test
-    public void test_large_checkout_with_special_offers_and_multiple_items() {
+    public void test_large_checkout_with_multiple_special_offers_and_multiple_items() {
         String items = "ABCDCBAABCABBAAA";
-        int expectedSum = 505;
+        int expectedSum = 495;
 
         assertThat(checkout.checkout(items), equalTo(expectedSum));
     }
@@ -169,4 +169,5 @@ public class CheckoutSolutionTest {
     }
 
 }
+
 
