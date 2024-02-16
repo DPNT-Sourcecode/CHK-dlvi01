@@ -1,7 +1,6 @@
 package befaster.solutions.CHK;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class CheckoutSolution {
     public Integer checkout(String skus) {
@@ -198,16 +197,41 @@ public class CheckoutSolution {
         return skuCounts;
     }
 
+    private static <K, V extends Comparable<? super V>> List<Map.Entry<K, V>> entriesSortedByValues(Map<K, V> map) {
+        List<Map.Entry<K, V>> sortedEntries = new ArrayList<Map.Entry<K, V>>(map.entrySet());
+
+        Collections.sort(sortedEntries,
+                new Comparator<Map.Entry<K, V>>() {
+                    @Override
+                    public int compare(Map.Entry<K, V> e1, Map.Entry<K, V> e2) {
+                        return e2.getValue().compareTo(e1.getValue());
+                    }
+                });
+
+        return sortedEntries;
+    }
+
     private static int handleAny3SpecialOffer(String skus, int checkoutSum, Map<Character, Integer> skuCounts, Map<Character, Integer> unitPrices) {
         // Handles any 3 of (S,T,X,Y,Z) for 45 special offer.
 
-        StringBuilder sb = new StringBuilder();
+        Map<Character, Integer> specialItemPriceMap = new TreeMap<>();
+        specialItemPriceMap.put('S', 20);
+        specialItemPriceMap.put('T', 20);
+        specialItemPriceMap.put('X', 17);
+        specialItemPriceMap.put('Y', 20);
+        specialItemPriceMap.put('Z', 21);
+
+        entriesSortedByValues(specialItemPriceMap);
+
+        StringBuilder s = new StringBuilder();
 
         for (char c : skus.toCharArray()) {
             if (c == 'S' || c == 'T' || c == 'X' || c == 'Y' || c == 'Z') {
-                sb.append(c);
+                s.append(c);
             }
         }
+
+        StringBuilder sb = new StringBuilder().append(sortStringByCharValueMap(s.toString(), specialItemPriceMap));
 
         int lastDivisibleIndex = 0;
 
@@ -235,6 +259,24 @@ public class CheckoutSolution {
             checkoutSum += unitPrices.get(sb.charAt(j));
         }
         return checkoutSum;
+    }
+
+    private static String sortStringByCharValueMap(String string, Map<Character, Integer> specialItemPriceMap) {
+        // Sorts a string's characters into descending order
+        // based on the values stored in specialItemPriceMap.
+
+        List<Map.Entry<Character, Integer>> charValuePairs = new ArrayList<>(specialItemPriceMap.entrySet());
+
+        // Sort the list by value in descending order.
+        charValuePairs.sort((o1, o2) -> Integer.compare(o2.getValue(), o1.getValue()));
+
+        // Build a new string with the sorted characters.
+        StringBuilder sortedStr = new StringBuilder();
+        for (Map.Entry<Character, Integer> entry : charValuePairs) {
+            sortedStr.append(entry.getKey());
+        }
+
+        return sortedStr.toString();
     }
 
     private Map<Character, Integer> handleSpecialOffer1FreeFor3SpecificItems(Map<Character, Integer> skuCounts, Character itemThreeIsNeededOf, Character freeItem, int numOfItemsNeededToQualifyForFree) {
@@ -296,3 +338,4 @@ public class CheckoutSolution {
         return sum;
     }
 }
+
