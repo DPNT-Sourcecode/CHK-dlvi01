@@ -87,5 +87,23 @@ public class CheckoutSolutionTest {
 
         assertThat(checkout.checkout(items), equalTo(expectedSum));
     }
+
+    @Test
+    public void test_checkout_with_non_alphabetic_string() {
+        String items = "-";
+        int expectedSum = -1;
+
+        assertThat(checkout.checkout(items), equalTo(expectedSum));
+    }
+
+    @Test
+    public void test_checkout_with_invalid_string_input() {
+        String items = "ABCa";
+        int expectedSum = -1;
+
+        assertThat(checkout.checkout(items), equalTo(expectedSum));
+    }
+
 }
+
 

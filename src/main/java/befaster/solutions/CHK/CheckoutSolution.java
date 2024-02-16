@@ -19,6 +19,11 @@ public class CheckoutSolution {
         unitPrices.put("C", 20);
         unitPrices.put("D", 15);
 
+        // If the skus string contains non-alphabetic characters and lowercase characters, then return -1.
+        if (hasNonAlphabeticAndLowercaseChars(skus)) {
+            return -1;
+        }
+
         // Store SKUs in a HashMap, so we can identify if there are multiples of 3As, or 2Bs, for example.
         Map<String, Integer> skuCounts = getSkuCounts(skus);
 
@@ -59,6 +64,15 @@ public class CheckoutSolution {
         }
 
         return checkoutSum;
+    }
+
+    private boolean hasNonAlphabeticAndLowercaseChars(String skus) {
+        for (char c: skus.toCharArray()) {
+            if (!Character.isLetter(c) || Character.isLowerCase(c)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private static Map<String, Integer> getSkuCounts(String skus) {
@@ -105,6 +119,7 @@ public class CheckoutSolution {
         return sum;
     }
 }
+
 
 
 
