@@ -21,6 +21,29 @@ public class CheckoutSolution {
         unitPrices.put('E', 40);
         unitPrices.put('F', 10);
 
+        unitPrices.put('G', 10);
+        unitPrices.put('H', 10);
+        unitPrices.put('I', 10);
+        unitPrices.put('J', 10);
+        unitPrices.put('K', 10);
+        unitPrices.put('L', 10);
+        unitPrices.put('M', 10);
+        unitPrices.put('N', 10);
+        unitPrices.put('O', 10);
+        unitPrices.put('P', 10);
+        unitPrices.put('Q', 10);
+        unitPrices.put('R', 10);
+        unitPrices.put('S', 10);
+        unitPrices.put('T', 10);
+        unitPrices.put('U', 10);
+        unitPrices.put('V', 10);
+        unitPrices.put('W', 10);
+        unitPrices.put('X', 10);
+        unitPrices.put('Y', 10);
+        unitPrices.put('X', 10);
+
+
+
         // If the skus string contains non-alphabetic characters and lowercase characters, then return -1.
         if (hasNonAlphabeticAndLowercaseChars(skus)) {
             return -1;

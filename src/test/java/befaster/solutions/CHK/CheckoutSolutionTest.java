@@ -17,7 +17,7 @@ public class CheckoutSolutionTest {
     }
 
     @Test
-    public void test_checkout_with_one_item_A() {
+    public void test_checkout_with_1_A() {
         String items = "A";
         int expectedSum = 50;
 
@@ -25,7 +25,7 @@ public class CheckoutSolutionTest {
     }
 
     @Test
-    public void test_checkout_with_one_item_B() {
+    public void test_checkout_with_1_B() {
         String items = "B";
         int expectedSum = 30;
 
@@ -33,7 +33,7 @@ public class CheckoutSolutionTest {
     }
 
     @Test
-    public void test_checkout_with_one_item_C() {
+    public void test_checkout_with_1_C() {
         String items = "C";
         int expectedSum = 20;
 
@@ -41,7 +41,7 @@ public class CheckoutSolutionTest {
     }
 
     @Test
-    public void test_checkout_with_one_item_D() {
+    public void test_checkout_with_1_D() {
         String items = "D";
         int expectedSum = 15;
 
@@ -49,7 +49,7 @@ public class CheckoutSolutionTest {
     }
 
     @Test
-    public void test_checkout_with_one_item_E() {
+    public void test_checkout_with_1_E() {
         String items = "E";
         int expectedSum = 40;
 
@@ -57,7 +57,7 @@ public class CheckoutSolutionTest {
     }
 
     @Test
-    public void test_checkout_with_one_item_F() {
+    public void test_checkout_with_1_F() {
         String items = "F";
         int expectedSum = 10;
 
@@ -65,7 +65,7 @@ public class CheckoutSolutionTest {
     }
 
     @Test
-    public void test_checkout_with_one_item_G() {
+    public void test_checkout_with_1_G() {
         String items = "G";
         int expectedSum = 20;
 
@@ -73,7 +73,7 @@ public class CheckoutSolutionTest {
     }
 
     @Test
-    public void test_checkout_with_one_item_H() {
+    public void test_checkout_with_1_H() {
         String items = "H";
         int expectedSum = 10;
 
@@ -81,7 +81,7 @@ public class CheckoutSolutionTest {
     }
 
     @Test
-    public void test_checkout_with_one_item_I() {
+    public void test_checkout_with_1_I() {
         String items = "I";
         int expectedSum = 35;
 
@@ -89,7 +89,7 @@ public class CheckoutSolutionTest {
     }
 
     @Test
-    public void test_checkout_with_one_item_J() {
+    public void test_checkout_with_1_J() {
         String items = "J";
         int expectedSum = 60;
 
@@ -97,7 +97,7 @@ public class CheckoutSolutionTest {
     }
 
     @Test
-    public void test_checkout_with_one_item_K() {
+    public void test_checkout_with_1_K() {
         String items = "K";
         int expectedSum = 80;
 
@@ -105,7 +105,7 @@ public class CheckoutSolutionTest {
     }
 
     @Test
-    public void test_checkout_with_one_item_L() {
+    public void test_checkout_with_1_L() {
         String items = "L";
         int expectedSum = 90;
 
@@ -113,7 +113,7 @@ public class CheckoutSolutionTest {
     }
 
     @Test
-    public void test_checkout_with_one_item_M() {
+    public void test_checkout_with_1_M() {
         String items = "M";
         int expectedSum = 15;
 
@@ -121,7 +121,7 @@ public class CheckoutSolutionTest {
     }
 
     @Test
-    public void test_checkout_with_one_item_N() {
+    public void test_checkout_with_1_N() {
         String items = "N";
         int expectedSum = 40;
 
@@ -129,7 +129,7 @@ public class CheckoutSolutionTest {
     }
 
     @Test
-    public void test_checkout_with_one_item_O() {
+    public void test_checkout_with_1_O() {
         String items = "O";
         int expectedSum = 10;
 
@@ -137,7 +137,7 @@ public class CheckoutSolutionTest {
     }
 
     @Test
-    public void test_checkout_with_one_item_P() {
+    public void test_checkout_with_1_P() {
         String items = "P";
         int expectedSum = 50;
 
@@ -145,7 +145,7 @@ public class CheckoutSolutionTest {
     }
 
     @Test
-    public void test_checkout_with_one_item_Q() {
+    public void test_checkout_with_1_Q() {
         String items = "Q";
         int expectedSum = 30;
 
@@ -153,7 +153,7 @@ public class CheckoutSolutionTest {
     }
 
     @Test
-    public void test_checkout_with_one_item_R() {
+    public void test_checkout_with_1_R() {
         String items = "R";
         int expectedSum = 50;
 
@@ -161,7 +161,7 @@ public class CheckoutSolutionTest {
     }
 
     @Test
-    public void test_checkout_with_one_item_S() {
+    public void test_checkout_with_1_S() {
         String items = "S";
         int expectedSum = 30;
 
@@ -169,7 +169,7 @@ public class CheckoutSolutionTest {
     }
 
     @Test
-    public void test_checkout_with_one_item_T() {
+    public void test_checkout_with_1_T() {
         String items = "T";
         int expectedSum = 20;
 
@@ -177,7 +177,7 @@ public class CheckoutSolutionTest {
     }
 
     @Test
-    public void test_checkout_with_one_item_U() {
+    public void test_checkout_with_1_U() {
         String items = "U";
         int expectedSum = 40;
 
@@ -185,7 +185,7 @@ public class CheckoutSolutionTest {
     }
 
     @Test
-    public void test_checkout_with_one_item_V() {
+    public void test_checkout_with_1_V() {
         String items = "V";
         int expectedSum = 50;
 
@@ -193,7 +193,7 @@ public class CheckoutSolutionTest {
     }
 
     @Test
-    public void test_checkout_with_one_item_W() {
+    public void test_checkout_with_1_W() {
         String items = "W";
         int expectedSum = 20;
 
@@ -201,7 +201,7 @@ public class CheckoutSolutionTest {
     }
 
     @Test
-    public void test_checkout_with_one_item_X() {
+    public void test_checkout_with_1_X() {
         String items = "X";
         int expectedSum = 90;
 
@@ -209,7 +209,7 @@ public class CheckoutSolutionTest {
     }
 
     @Test
-    public void test_checkout_with_one_item_Y() {
+    public void test_checkout_with_1_Y() {
         String items = "Y";
         int expectedSum = 10;
 
@@ -217,7 +217,7 @@ public class CheckoutSolutionTest {
     }
 
     @Test
-    public void test_checkout_with_one_item_Z() {
+    public void test_checkout_with_1_Z() {
         String items = "Z";
         int expectedSum = 50;
 
@@ -225,7 +225,7 @@ public class CheckoutSolutionTest {
     }
 
     @Test
-    public void test_checkout_with_three_F_free_and_one_F_free_special_offer() {
+    public void test_checkout_with_three_F_free_and_1_F_free_special_offer() {
         String items = "FFF";
         int expectedSum = 20;
 
@@ -360,8 +360,69 @@ public class CheckoutSolutionTest {
         assertThat(checkout.checkout(items), equalTo(expectedSum));
     }
 
+    @Test
+    public void test_checkout_with_2_K_special_offers() {
+        String items = "KK";
+        int expectedSum = 150;
 
+        assertThat(checkout.checkout(items), equalTo(expectedSum));
+    }
 
+    @Test
+    public void test_checkout_with_3_N_1_M_free_special_offers() {
+        String items = "NNNM";
+        int expectedSum = 120;
+
+        assertThat(checkout.checkout(items), equalTo(expectedSum));
+    }
+
+    @Test
+    public void test_checkout_with_5_P_special_offers() {
+        String items = "PPPPP";
+        int expectedSum = 200;
+
+        assertThat(checkout.checkout(items), equalTo(expectedSum));
+    }
+
+    @Test
+    public void test_checkout_with_3_Q_special_offers() {
+        String items = "QQQ";
+        int expectedSum = 80;
+
+        assertThat(checkout.checkout(items), equalTo(expectedSum));
+    }
+
+    @Test
+    public void test_checkout_with_3_R_1_Q_free_special_offers() {
+        String items = "RRRQ";
+        int expectedSum = 150;
+
+        assertThat(checkout.checkout(items), equalTo(expectedSum));
+    }
+
+    @Test
+    public void test_checkout_with_3_U_1_U_free_special_offers() {
+        String items = "UUUU";
+        int expectedSum = 120;
+
+        assertThat(checkout.checkout(items), equalTo(expectedSum));
+    }
+
+    @Test
+    public void test_checkout_with_2_V_special_offers() {
+        String items = "VV";
+        int expectedSum = 90;
+
+        assertThat(checkout.checkout(items), equalTo(expectedSum));
+    }
+
+    @Test
+    public void test_checkout_with_3_V_special_offers() {
+        String items = "VVV";
+        int expectedSum = 130;
+
+        assertThat(checkout.checkout(items), equalTo(expectedSum));
+    }
 
     @Test
     public void test_checkout_with_no_items() {
