@@ -57,6 +57,30 @@ public class CheckoutSolutionTest {
     }
 
     @Test
+    public void test_checkout_with_one_item_F() {
+        String items = "F";
+        int expectedSum = 10;
+
+        assertThat(checkout.checkout(items), equalTo(expectedSum));
+    }
+
+    @Test
+    public void test_checkout_with_one_F_free_as_special_offer() {
+        String items = "FFF";
+        int expectedSum = 20;
+
+        assertThat(checkout.checkout(items), equalTo(expectedSum));
+    }
+
+    @Test
+    public void test_checkout_with_two_F_no_special_offer() {
+        String items = "FF";
+        int expectedSum = 20;
+
+        assertThat(checkout.checkout(items), equalTo(expectedSum));
+    }
+
+    @Test
     public void test_checkout_with_multiple_items() {
         String items = "AB";
         int expectedSum = 80;
@@ -169,5 +193,6 @@ public class CheckoutSolutionTest {
     }
 
 }
+
 
 

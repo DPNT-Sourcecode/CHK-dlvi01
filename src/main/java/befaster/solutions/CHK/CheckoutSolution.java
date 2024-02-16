@@ -19,6 +19,7 @@ public class CheckoutSolution {
         unitPrices.put('C', 20);
         unitPrices.put('D', 15);
         unitPrices.put('E', 40);
+        unitPrices.put('F', 10);
 
         // If the skus string contains non-alphabetic characters and lowercase characters, then return -1.
         if (hasNonAlphabeticAndLowercaseChars(skus)) {
@@ -61,8 +62,13 @@ public class CheckoutSolution {
                         checkoutSum += count * unitPrices.get(sku);
                     }
                 }
+            } else if (sku.equals('F')) {
+                int fCount = unitPrices.get(sku);
+
+                // if
             }
-            // Other SKUs have no special offer, so no need to check if a special offer is applicable.
+            // Other SKUs have no special offer (except E which is already handled)
+            // so no need to check if a special offer is applicable.
             else {
                 if (unitPrices.containsKey(sku)) {
                     checkoutSum += count * unitPrices.get(sku);
@@ -174,4 +180,5 @@ public class CheckoutSolution {
         return sum;
     }
 }
+
 
