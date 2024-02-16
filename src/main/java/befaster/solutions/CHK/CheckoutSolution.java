@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class CheckoutSolution {
     public Integer checkout(String skus) {
-        if (skus.isBlank()) {
+        if (skus == null || skus.trim().isEmpty()) {
             return 0;
         }
 
@@ -99,4 +99,5 @@ public class CheckoutSolution {
         return sum;
     }
 }
+
 

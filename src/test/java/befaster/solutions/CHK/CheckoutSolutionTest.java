@@ -17,9 +17,33 @@ public class CheckoutSolutionTest {
     }
 
     @Test
-    public void test_checkout_with_one_item() {
+    public void test_checkout_with_one_item_A() {
         String items = "A";
         int expectedSum = 50;
+
+        assertThat(checkout.checkout(items), equalTo(expectedSum));
+    }
+
+    @Test
+    public void test_checkout_with_one_item_B() {
+        String items = "B";
+        int expectedSum = 30;
+
+        assertThat(checkout.checkout(items), equalTo(expectedSum));
+    }
+
+    @Test
+    public void test_checkout_with_one_item_C() {
+        String items = "C";
+        int expectedSum = 20;
+
+        assertThat(checkout.checkout(items), equalTo(expectedSum));
+    }
+
+    @Test
+    public void test_checkout_with_one_item_D() {
+        String items = "D";
+        int expectedSum = 15;
 
         assertThat(checkout.checkout(items), equalTo(expectedSum));
     }
@@ -47,4 +71,21 @@ public class CheckoutSolutionTest {
 
         assertThat(checkout.checkout(items), equalTo(expectedSum));
     }
+
+    @Test
+    public void test_checkout_with_no_items() {
+        String items = "";
+        int expectedSum = 0;
+
+        assertThat(checkout.checkout(items), equalTo(expectedSum));
+    }
+
+    @Test
+    public void test_checkout_with_empty_string() {
+        String items = null;
+        int expectedSum = 0;
+
+        assertThat(checkout.checkout(items), equalTo(expectedSum));
+    }
 }
+
