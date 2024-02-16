@@ -46,6 +46,8 @@ public class CheckoutSolution {
                 checkoutSum = handleHPriceCalculation(count, checkoutSum, unitPrices, sku);
             } else if (sku.equals('K')) {
                 checkoutSum = handleKPriceCalculation(count, checkoutSum, unitPrices, sku);
+            } else if (sku.equals('P')) {
+                checkoutSum = handlePPriceCalculation(count, checkoutSum, unitPrices, sku);
             }
             // Handle remaining SKUs without special offers.
             else {
@@ -192,6 +194,22 @@ public class CheckoutSolution {
         return checkoutSum;
     }
 
+    private static int handlePPriceCalculation(int count, int checkoutSum, Map<Character, Integer> unitPrices, Character sku) {
+        // Handles price calculation for P items, including special offer calculation.
+
+        int specialOfferUnitRequirement = 5;
+        int specialOfferPrice = 200;
+
+        if (isSpecialOfferApplicable(count, specialOfferUnitRequirement)) {
+            checkoutSum += handle2ForSpecialOffer(unitPrices, sku, count, specialOfferUnitRequirement, specialOfferPrice);
+        } else {
+            if (unitPrices.containsKey(sku)) {
+                checkoutSum += count * unitPrices.get(sku);
+            }
+        }
+        return checkoutSum;
+    }
+
     private boolean hasNonAlphabeticAndLowercaseChars(String skus) {
         for (char c : skus.toCharArray()) {
             if (!Character.isLetter(c) || Character.isLowerCase(c)) {
@@ -218,7 +236,7 @@ public class CheckoutSolution {
     }
 
     private Map<Character, Integer> handleSpecialOffer1FreeFor3SpecificItems(Map<Character, Integer> skuCounts, Character itemThreeIsNeededOf, Character freeItem, int numOfItemsNeededToQualifyForFree) {
-        // Handle the special offer where 3 specific items get 1 different kind of item for free.
+        // Handle the special offer where a specific number of items get 1 different kind of item for free.
 
         if (skuCounts.containsKey(itemThreeIsNeededOf) && skuCounts.containsKey(freeItem)) {
             int threeItemCount = skuCounts.get(itemThreeIsNeededOf);
@@ -280,5 +298,6 @@ public class CheckoutSolution {
         return sum;
     }
 }
+
 
 
