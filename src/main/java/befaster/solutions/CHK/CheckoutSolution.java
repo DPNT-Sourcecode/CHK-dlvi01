@@ -265,40 +265,30 @@ public class CheckoutSolution {
         // Sorts a string's characters into descending order
         // based on the values stored in specialItemPriceMap.
 
-//        List<Map.Entry<Character, Integer>> charValuePairs = new ArrayList<>(specialItemPriceMap.entrySet());
-//
-//        // Sort the list by value in descending order.
-//        charValuePairs.sort((o1, o2) -> Integer.compare(o2.getValue(), o1.getValue()));
-//
-//        // Build a new string with the sorted characters.
-//        StringBuilder sortedStr = new StringBuilder();
-//        for (Map.Entry<Character, Integer> entry : charValuePairs) {
-//            sortedStr.append(entry.getKey());
-//        }
-//
-//        return sortedStr.toString();
-
+        // This Character array will store the sorted characters.
         Character[] sortedChars = new Character[string.length()];
 
         for (int i = 0; i < string.length(); i++) {
             sortedChars[i] = string.charAt(i);
         }
 
-
-
+        // This custom comparator compares characters based on their values in the map.
         Comparator<Character> valueComparator = (c1, c2) -> {
             int value1 = specialItemPriceMap.get(c1);
             int value2 = specialItemPriceMap.get(c2);
             return Integer.compare(value2, value1);
         };
 
+        // Sort the Character array using the custom comparator.
         Arrays.sort(sortedChars, valueComparator);
 
+        // Construct a new string of the sorted characters.
         StringBuilder s = new StringBuilder();
         for (Character c : sortedChars) {
             s.append(c);
         }
 
+        // Return the sorted string.
         return s.toString();
     }
 
@@ -361,6 +351,7 @@ public class CheckoutSolution {
         return sum;
     }
 }
+
 
 
 
