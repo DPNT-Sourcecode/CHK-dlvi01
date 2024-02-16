@@ -212,36 +212,38 @@ public class CheckoutSolution {
 //        char[] specialChars = new char[] {'S', 'T', 'X', 'Y', 'Z'};
 //
 //        for (char c : specialChars) {
-//            while(totalCount % 3 != 0) {
+//            int newSum = totalCount + skuCounts.getOrDefault(c, 0);
+//
+//            if(newSum % 3 == 0) {
 //                totalCount += skuCounts.get(c);
 //                set.add(c);
 //            }
 //        }
 //
-//        total
-
-
-
-
-
-
-
-
-
-
-
-
-        int sCount = skuCounts.getOrDefault('S', 0);
-        int tCount = skuCounts.getOrDefault('T', 0);
-        int xCount = skuCounts.getOrDefault('X', 0);
-        int yCount = skuCounts.getOrDefault('Y', 0);
-        int zCount = skuCounts.getOrDefault('Z', 0);
-
-        int sum = sCount + tCount + xCount + yCount + zCount;
-
-        double multiplesOfThree = (double) sum / 3;
-
-        boolean isWholeNumber = multiplesOfThree == (int) multiplesOfThree;
+////        total
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//        int sCount = skuCounts.getOrDefault('S', 0);
+//        int tCount = skuCounts.getOrDefault('T', 0);
+//        int xCount = skuCounts.getOrDefault('X', 0);
+//        int yCount = skuCounts.getOrDefault('Y', 0);
+//        int zCount = skuCounts.getOrDefault('Z', 0);
+//
+//        int sum = sCount + tCount + xCount + yCount + zCount;
+//
+//        double multiplesOfThree = (double) sum / 3;
+//
+//        boolean isWholeNumber = multiplesOfThree == (int) multiplesOfThree;
 
 //        if (isWholeNumber) {
 //            skuCounts.put('S', 0);
@@ -253,7 +255,7 @@ public class CheckoutSolution {
 //
 //        }
 
-        int cost = (int) multiplesOfThree * 45;
+//        int cost = (int) multiplesOfThree * 45;
 
         // PLAN:
         // Check how many are there of S T X Y Z in total.
@@ -267,12 +269,12 @@ public class CheckoutSolution {
             // Add the current value to sum
 
 
-
-
-
-
-
-        return cost;
+//
+//
+//
+//
+//
+        return 0;
     }
 
     private Map<Character, Integer> handleSpecialOffer1FreeFor3SpecificItems(Map<Character, Integer> skuCounts, Character itemThreeIsNeededOf, Character freeItem, int numOfItemsNeededToQualifyForFree) {
@@ -334,5 +336,6 @@ public class CheckoutSolution {
         return sum;
     }
 }
+
 
 
