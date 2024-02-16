@@ -98,7 +98,7 @@ public class CheckoutSolutionTest {
     @Test
     public void test_checkout_with_1_K() {
         String items = "K";
-        int expectedSum = 80;
+        int expectedSum = 70;
 
         assertThat(checkout.checkout(items), equalTo(expectedSum));
     }
@@ -162,7 +162,7 @@ public class CheckoutSolutionTest {
     @Test
     public void test_checkout_with_1_S() {
         String items = "S";
-        int expectedSum = 30;
+        int expectedSum = 20;
 
         assertThat(checkout.checkout(items), equalTo(expectedSum));
     }
@@ -202,7 +202,7 @@ public class CheckoutSolutionTest {
     @Test
     public void test_checkout_with_1_X() {
         String items = "X";
-        int expectedSum = 90;
+        int expectedSum = 17;
 
         assertThat(checkout.checkout(items), equalTo(expectedSum));
     }
@@ -210,7 +210,7 @@ public class CheckoutSolutionTest {
     @Test
     public void test_checkout_with_1_Y() {
         String items = "Y";
-        int expectedSum = 10;
+        int expectedSum = 20;
 
         assertThat(checkout.checkout(items), equalTo(expectedSum));
     }
@@ -218,7 +218,7 @@ public class CheckoutSolutionTest {
     @Test
     public void test_checkout_with_1_Z() {
         String items = "Z";
-        int expectedSum = 50;
+        int expectedSum = 21;
 
         assertThat(checkout.checkout(items), equalTo(expectedSum));
     }
@@ -488,3 +488,4 @@ public class CheckoutSolutionTest {
     }
 
 }
+

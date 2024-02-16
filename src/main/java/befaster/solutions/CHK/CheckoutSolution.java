@@ -86,7 +86,7 @@ public class CheckoutSolution {
         unitPrices.put('H', 10);
         unitPrices.put('I', 35);
         unitPrices.put('J', 60);
-        unitPrices.put('K', 80);
+        unitPrices.put('K', 70);
         unitPrices.put('L', 90);
         unitPrices.put('M', 15);
         unitPrices.put('N', 40);
@@ -94,14 +94,14 @@ public class CheckoutSolution {
         unitPrices.put('P', 50);
         unitPrices.put('Q', 30);
         unitPrices.put('R', 50);
-        unitPrices.put('S', 30);
+        unitPrices.put('S', 20);
         unitPrices.put('T', 20);
         unitPrices.put('U', 40);
         unitPrices.put('V', 50);
         unitPrices.put('W', 20);
-        unitPrices.put('X', 90);
-        unitPrices.put('Y', 10);
-        unitPrices.put('Z', 50);
+        unitPrices.put('X', 17);
+        unitPrices.put('Y', 20);
+        unitPrices.put('Z', 21);
         return unitPrices;
     }
 
@@ -305,4 +305,5 @@ public class CheckoutSolution {
         return sum;
     }
 }
+
 
