@@ -220,11 +220,13 @@ public class CheckoutSolution {
             skuCounts.put('X', 0);
             skuCounts.put('Y', 0);
             skuCounts.put('Z', 0);
+        } else {
+
         }
 
         int cost = (int) multiplesOfThree * 45;
 
-
+        return 0;
     }
 
     private Map<Character, Integer> handleSpecialOffer1FreeFor3SpecificItems(Map<Character, Integer> skuCounts, Character itemThreeIsNeededOf, Character freeItem, int numOfItemsNeededToQualifyForFree) {
@@ -286,6 +288,7 @@ public class CheckoutSolution {
         return sum;
     }
 }
+
 
 
 
