@@ -53,7 +53,7 @@ public class CheckoutSolution {
             } else if (sku.equals('H')) {
                 checkoutSum = handleBulkSpecialOffer(count, checkoutSum, unitPrices, sku, 5, 45, 10, 80);
             } else if (sku.equals('K')) {
-                checkoutSum = handleMultiSKUPriceCalculation(count, checkoutSum, unitPrices, sku, 2, 150);
+                checkoutSum = handleMultiSKUPriceCalculation(count, checkoutSum, unitPrices, sku, 2, 120);
             } else if (sku.equals('P')) {
                 checkoutSum = handleMultiSKUPriceCalculation(count, checkoutSum, unitPrices, sku, 5, 200);
             } else if (sku.equals('Q')) {
@@ -305,5 +305,6 @@ public class CheckoutSolution {
         return sum;
     }
 }
+
 
 
