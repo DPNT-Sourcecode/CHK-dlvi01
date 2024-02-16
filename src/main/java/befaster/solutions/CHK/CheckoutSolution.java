@@ -199,13 +199,19 @@ public class CheckoutSolution {
         // Handle 2F get one F free special offer.
 
         int sum = 0;
-        while (count > 0 && count / 2 > 0) {
-            count = count - specialOfferUnitRequirement;
+        while (count > 0 && count / specialOfferUnitRequirement > 0) {
+            count -= specialOfferUnitRequirement;
             sum += specialOfferUnitRequirement * unitPrices.get(sku);
 
             // 1 F is free.
             count = count - 1;
         }
+
+        // Handle any remaining Fs which were not a multiple of 2.
+        if (count > 0) {
+            sum += count * unitPrices.get(sku);
+        }
+
         return sum;
     }
 }
