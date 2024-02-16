@@ -48,5 +48,3 @@ public class CheckoutSolutionTest {
         assertThat(checkout.checkout(items), equalTo(expectedSum));
     }
 }
-
-

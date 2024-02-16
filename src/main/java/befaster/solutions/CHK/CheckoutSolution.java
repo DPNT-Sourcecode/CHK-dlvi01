@@ -23,7 +23,7 @@ public class CheckoutSolution {
             String sku = entry.getKey();
             int count = entry.getValue();
 
-            if (sku == "A") {
+            if (sku.equals("A")) {
                 int specialOfferUnitRequirement = 3;
                 int specialOfferPrice = 130;
 
@@ -32,7 +32,7 @@ public class CheckoutSolution {
                 } else {
                     checkoutSum += count * unitPrices.get(sku);
                 }
-            } else if (sku == "B") {
+            } else if (sku.equals("B")) {
                 int specialOfferUnitRequirement = 2;
                 int specialOfferPrice = 45;
 
@@ -41,7 +41,9 @@ public class CheckoutSolution {
                 } else {
                     checkoutSum += count * unitPrices.get(sku);
                 }
-            } else {
+            }
+            // Other SKUs have no special offer, so no need to check if a special offer is applicable.
+            else {
                 checkoutSum += count * unitPrices.get(sku);
             }
         }
@@ -93,7 +95,3 @@ public class CheckoutSolution {
         return sum;
     }
 }
-
-
-
-
