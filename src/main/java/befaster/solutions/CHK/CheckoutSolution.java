@@ -62,13 +62,16 @@ public class CheckoutSolution {
                         checkoutSum += count * unitPrices.get(sku);
                     }
                 }
-            } else if (sku.equals('F')) {
-                int fCount = unitPrices.get(sku);
+            } else if (sku.equals('F') && (count % 2 > 0)) {
+                    while (count > 0 && count % 2 > 0) {
+                        count = count - 2;
+                        checkoutSum += 2 * unitPrices.get(sku);
 
-                // if
+                        // 1 F is free.
+                        count = count - 1;
+                    }
             }
-            // Other SKUs have no special offer (except E which is already handled)
-            // so no need to check if a special offer is applicable.
+            // Handle remaining SKUs without special offers.
             else {
                 if (unitPrices.containsKey(sku)) {
                     checkoutSum += count * unitPrices.get(sku);
@@ -180,3 +183,4 @@ public class CheckoutSolution {
         return sum;
     }
 }
+
