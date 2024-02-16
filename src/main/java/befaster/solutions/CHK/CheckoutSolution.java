@@ -13,36 +13,7 @@ public class CheckoutSolution {
         int checkoutSum = 0;
 
         // This map stores individual unit prices (no special offers).
-        Map<Character, Integer> unitPrices = new HashMap<>();
-        unitPrices.put('A', 50);
-        unitPrices.put('B', 30);
-        unitPrices.put('C', 20);
-        unitPrices.put('D', 15);
-        unitPrices.put('E', 40);
-        unitPrices.put('F', 10);
-
-        unitPrices.put('G', 10);
-        unitPrices.put('H', 10);
-        unitPrices.put('I', 10);
-        unitPrices.put('J', 10);
-        unitPrices.put('K', 10);
-        unitPrices.put('L', 10);
-        unitPrices.put('M', 10);
-        unitPrices.put('N', 10);
-        unitPrices.put('O', 10);
-        unitPrices.put('P', 10);
-        unitPrices.put('Q', 10);
-        unitPrices.put('R', 10);
-        unitPrices.put('S', 10);
-        unitPrices.put('T', 10);
-        unitPrices.put('U', 10);
-        unitPrices.put('V', 10);
-        unitPrices.put('W', 10);
-        unitPrices.put('X', 10);
-        unitPrices.put('Y', 10);
-        unitPrices.put('X', 10);
-
-
+        Map<Character, Integer> unitPrices = storeUnitPrices();
 
         // If the skus string contains non-alphabetic characters and lowercase characters, then return -1.
         if (hasNonAlphabeticAndLowercaseChars(skus)) {
@@ -68,6 +39,10 @@ public class CheckoutSolution {
                 checkoutSum = handleBPriceCalculation(count, checkoutSum, unitPrices, sku);
             } else if (sku.equals('F') && (count / fSpecialOfferUnitRequirement > 0)) {
                 checkoutSum += handleFSpecialOffer(count, unitPrices, sku, fSpecialOfferUnitRequirement);
+            } else if (sku.equals('H')) {
+                checkoutSum = handleHPriceCalculation(count, checkoutSum, unitPrices, sku);
+            } else if (sku.equals('K')) {
+                checkoutSum = handleKPriceCalculation(count, checkoutSum, unitPrices, sku);
             }
             // Handle remaining SKUs without special offers.
             else {
@@ -78,6 +53,37 @@ public class CheckoutSolution {
         }
 
         return checkoutSum;
+    }
+
+    private static Map<Character, Integer> storeUnitPrices() {
+        Map<Character, Integer> unitPrices = new HashMap<>();
+        unitPrices.put('A', 50);
+        unitPrices.put('B', 30);
+        unitPrices.put('C', 20);
+        unitPrices.put('D', 15);
+        unitPrices.put('E', 40);
+        unitPrices.put('F', 10);
+        unitPrices.put('G', 20);
+        unitPrices.put('H', 10);
+        unitPrices.put('I', 35);
+        unitPrices.put('J', 60);
+        unitPrices.put('K', 80);
+        unitPrices.put('L', 90);
+        unitPrices.put('M', 15);
+        unitPrices.put('N', 40);
+        unitPrices.put('O', 10);
+        unitPrices.put('P', 50);
+        unitPrices.put('Q', 30);
+        unitPrices.put('R', 50);
+        unitPrices.put('S', 30);
+        unitPrices.put('T', 20);
+        unitPrices.put('U', 40);
+        unitPrices.put('V', 50);
+        unitPrices.put('W', 20);
+        unitPrices.put('X', 90);
+        unitPrices.put('Y', 10);
+        unitPrices.put('Z', 50);
+        return unitPrices;
     }
 
     private int handleAPriceCalculation(int count, int checkoutSum, Map<Character, Integer> unitPrices, Character sku) {
@@ -139,7 +145,42 @@ public class CheckoutSolution {
         int specialOfferPrice = 45;
 
         if (isSpecialOfferApplicable(count, specialOfferUnitRequirement)) {
-            checkoutSum += handleBSpecialOffer(unitPrices, sku, count, specialOfferUnitRequirement, specialOfferPrice);
+            checkoutSum += handle2ForSpecialOffer(unitPrices, sku, count, specialOfferUnitRequirement, specialOfferPrice);
+        } else {
+            if (unitPrices.containsKey(sku)) {
+                checkoutSum += count * unitPrices.get(sku);
+            }
+        }
+        return checkoutSum;
+    }
+
+    private int handleHPriceCalculation(int count, int checkoutSum, Map<Character, Integer> unitPrices, Character sku) {
+        // Handles price calculation for H items, including special offer calculation.
+
+        int specialOffer5HUnitRequirement = 5;
+        int specialOffer5HPrice = 45;
+
+        int specialOffer10HUnitRequirement = 10;
+        int specialOffer10HPrice = 80;
+
+        if (isSpecialOfferApplicable(count, specialOffer5HUnitRequirement) || isSpecialOfferApplicable(count, specialOffer10HUnitRequirement)) {
+            checkoutSum += handleASpecialOffer(unitPrices, sku, count, specialOffer5HUnitRequirement, specialOffer5HPrice, specialOffer10HUnitRequirement, specialOffer10HPrice);
+        } else {
+            if (unitPrices.containsKey(sku)) {
+                checkoutSum += count * unitPrices.get(sku);
+            }
+        }
+        return checkoutSum;
+    }
+
+    private static int handleKPriceCalculation(int count, int checkoutSum, Map<Character, Integer> unitPrices, Character sku) {
+        // Handles price calculation for K items, including special offer calculation.
+
+        int specialOfferUnitRequirement = 2;
+        int specialOfferPrice = 150;
+
+        if (isSpecialOfferApplicable(count, specialOfferUnitRequirement)) {
+            checkoutSum += handle2ForSpecialOffer(unitPrices, sku, count, specialOfferUnitRequirement, specialOfferPrice);
         } else {
             if (unitPrices.containsKey(sku)) {
                 checkoutSum += count * unitPrices.get(sku);
@@ -198,7 +239,7 @@ public class CheckoutSolution {
         return count / specialOfferUnitRequirement > 0;
     }
 
-    private static int handleBSpecialOffer(Map<Character, Integer> unitPrices, Character sku, int count, int specialOfferUnitRequirement, int specialOfferPrice) {
+    private static int handle2ForSpecialOffer(Map<Character, Integer> unitPrices, Character sku, int count, int specialOfferUnitRequirement, int specialOfferPrice) {
         int sum = 0;
 
         int specialOfferCount = count / specialOfferUnitRequirement;
@@ -209,7 +250,7 @@ public class CheckoutSolution {
         }
 
         // Handle if there are any extra items that are not covered
-        // by the special offer, say a 4th A item.
+        // by the special offer, say a 4th item.
         if (((double) count / specialOfferUnitRequirement - specialOfferCount) > 0) {
             count = count - specialOfferUnitRequirement * specialOfferCount;
             sum += count * unitPrices.get(sku);
@@ -238,3 +279,4 @@ public class CheckoutSolution {
         return sum;
     }
 }
+
