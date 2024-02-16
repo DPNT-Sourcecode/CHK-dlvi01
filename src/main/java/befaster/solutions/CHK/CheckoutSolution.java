@@ -1,7 +1,9 @@
 package befaster.solutions.CHK;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 public class CheckoutSolution {
     public Integer checkout(String skus) {
@@ -201,19 +203,46 @@ public class CheckoutSolution {
     private int handleSpecialOfferAny3For45(Map<Character, Integer> skuCounts) {
         // Handle this special offer:
         // any 3 of (S,T,X,Y,Z) for 45.
+
+//        int totalPrice = 0;
 //
-//        int sCount = skuCounts.get('S');
-//        int tCount = skuCounts.get('T');
-//        int xCount = skuCounts.get('X');
-//        int yCount = skuCounts.get('Y');
-//        int zCount = skuCounts.get('Z');
+//        int totalCount = 0;
+//        Set<Character> set = new HashSet<>();
 //
-//        int sum = sCount + tCount + xCount + yCount + zCount;
+//        char[] specialChars = new char[] {'S', 'T', 'X', 'Y', 'Z'};
 //
-//        double multiplesOfThree = (double) sum / 3;
+//        for (char c : specialChars) {
+//            while(totalCount % 3 != 0) {
+//                totalCount += skuCounts.get(c);
+//                set.add(c);
+//            }
+//        }
 //
-//        boolean isWholeNumber = multiplesOfThree == (int) multiplesOfThree;
-//
+//        total
+
+
+
+
+
+
+
+
+
+
+
+
+        int sCount = skuCounts.get('S');
+        int tCount = skuCounts.get('T');
+        int xCount = skuCounts.get('X');
+        int yCount = skuCounts.get('Y');
+        int zCount = skuCounts.get('Z');
+
+        int sum = sCount + tCount + xCount + yCount + zCount;
+
+        double multiplesOfThree = (double) sum / 3;
+
+        boolean isWholeNumber = multiplesOfThree == (int) multiplesOfThree;
+
 //        if (isWholeNumber) {
 //            skuCounts.put('S', 0);
 //            skuCounts.put('T', 0);
@@ -223,8 +252,8 @@ public class CheckoutSolution {
 //        } else {
 //
 //        }
-//
-//        int cost = (int) multiplesOfThree * 45;
+
+        int cost = (int) multiplesOfThree * 45;
 
         // PLAN:
         // Check how many are there of S T X Y Z in total.
@@ -243,7 +272,7 @@ public class CheckoutSolution {
 
 
 
-        return 0;
+        return cost;
     }
 
     private Map<Character, Integer> handleSpecialOffer1FreeFor3SpecificItems(Map<Character, Integer> skuCounts, Character itemThreeIsNeededOf, Character freeItem, int numOfItemsNeededToQualifyForFree) {
@@ -305,3 +334,4 @@ public class CheckoutSolution {
         return sum;
     }
 }
+
