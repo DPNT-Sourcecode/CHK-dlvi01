@@ -23,8 +23,11 @@ public class CheckoutSolution {
         // Store SKUs in a HashMap, so we can identify if there are multiples of 3As, or 2Bs, for example.
         Map<Character, Integer> skuCounts = getSkuCounts(skus);
 
-        // For every 2 pieces of E, one B is received for free.
-        skuCounts = handleSpecialOffer1BFor2Es(skuCounts);
+        // For every 2 pieces of E, 1 B is received for free.
+        skuCounts = handleSpecialOffer1FreeFor3SpecificItems(skuCounts, 'E', 'B', 2);
+
+        // For every 3 pieces of N, 1 M is received for free.
+        skuCounts = handleSpecialOffer1FreeFor3SpecificItems(skuCounts, 'N', 'M', 3);
 
         int fSpecialOfferUnitRequirement = 2;
 
@@ -214,22 +217,20 @@ public class CheckoutSolution {
         return skuCounts;
     }
 
-    private Map<Character, Integer> handleSpecialOffer1BFor2Es(Map<Character, Integer> skuCounts) {
-        // Handle the special offer where 2Es get 1 B for free.
+    private Map<Character, Integer> handleSpecialOffer1FreeFor3SpecificItems(Map<Character, Integer> skuCounts, Character itemThreeIsNeededOf, Character freeItem, int numOfItemsNeededToQualifyForFree) {
+        // Handle the special offer where 3 specific items get 1 different kind of item for free.
 
-        int specialOfferUnitRequirement = 2;
+        if (skuCounts.containsKey(itemThreeIsNeededOf) && skuCounts.containsKey(freeItem)) {
+            int threeItemCount = skuCounts.get(itemThreeIsNeededOf);
+            int freeItemCount = skuCounts.get(freeItem);
 
-        if (skuCounts.containsKey('E') && skuCounts.containsKey('B')) {
-            int eCount = skuCounts.get('E');
-            int bCount = skuCounts.get('B');
+            // Calculate the number of free items.
+            int numOfFreeItems = threeItemCount / numOfItemsNeededToQualifyForFree;
 
-            // Calculate the number of free Bs.
-            int numOfFreeBs = eCount / specialOfferUnitRequirement;
-
-            // Deduct the number of free Bs from bCount, put it back into the skuCounts map.
-            // The remaining Bs will cost the customer.
-            bCount -= numOfFreeBs;
-            skuCounts.put('B', bCount);
+            // Deduct the number of free items, put it back into the skuCounts map.
+            // The remaining different kind item will cost the customer.
+            freeItemCount -= numOfFreeItems;
+            skuCounts.put(freeItem, freeItemCount);
         }
 
         return skuCounts;
@@ -279,4 +280,5 @@ public class CheckoutSolution {
         return sum;
     }
 }
+
 
