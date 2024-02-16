@@ -27,7 +27,61 @@ public class CheckoutSolution {
 
         // Handle this special offer:
         // any 3 of (S,T,X,Y,Z) for 45
-        checkoutSum = handleSpecialOfferAny3For45(skuCounts);
+        //checkoutSum = handleSpecialOfferAny3For45(skuCounts, skus);
+
+
+
+
+
+
+
+        // Handle this special offer:
+        // any 3 of (S,T,X,Y,Z) for 45.
+
+        //int totalPrice = 0;
+
+        StringBuilder sb = new StringBuilder();
+
+        for (char c : skus.toCharArray()) {
+            if (c == 'S' || c == 'T' || c == 'X' || c == 'Y' || c == 'Z') {
+                sb.append(c);
+            }
+        }
+
+        int lastDivisibleIndex = 0;
+
+        for (int i = 0; i < sb.length(); i++) {
+            if (i != 0 && i % 3 == 0) {
+                checkoutSum += 45;
+
+                int currentCharCount = skuCounts.get(sb.charAt(i));
+                currentCharCount--;
+                skuCounts.put(sb.charAt(i), currentCharCount);
+
+                int prevCharCount = skuCounts.get(sb.charAt(i-1));
+                prevCharCount--;
+                skuCounts.put(sb.charAt(i-1), prevCharCount);
+
+                int prevPrevCharCount = skuCounts.get(sb.charAt(i-2));
+                prevPrevCharCount--;
+                skuCounts.put(sb.charAt(i-2), prevPrevCharCount);
+
+                lastDivisibleIndex = i;
+            }
+        }
+
+        for (int j = lastDivisibleIndex; j < sb.length(); j++) {
+            checkoutSum += unitPrices.get(sb.charAt(j));
+        }
+
+
+
+
+
+
+
+
+
 
         // For every 2 pieces of E, 1 B is received for free.
         skuCounts = handleSpecialOffer1FreeFor3SpecificItems(skuCounts, 'E', 'B', 2);
@@ -200,11 +254,12 @@ public class CheckoutSolution {
         return skuCounts;
     }
 
-    private int handleSpecialOfferAny3For45(Map<Character, Integer> skuCounts) {
-        // Handle this special offer:
-        // any 3 of (S,T,X,Y,Z) for 45.
+//    private int handleSpecialOfferAny3For45(Map<Character, Integer> skuCounts, String str) {
+//
+//
 
-//        int totalPrice = 0;
+
+
 //
 //        int totalCount = 0;
 //        Set<Character> set = new HashSet<>();
@@ -273,9 +328,9 @@ public class CheckoutSolution {
 //
 //
 //
-//
-        return 0;
-    }
+
+//        return 0;
+//    }
 
     private Map<Character, Integer> handleSpecialOffer1FreeFor3SpecificItems(Map<Character, Integer> skuCounts, Character itemThreeIsNeededOf, Character freeItem, int numOfItemsNeededToQualifyForFree) {
         // Handles the special offer where a specific number of items get 1 different kind of item for free.
@@ -336,3 +391,4 @@ public class CheckoutSolution {
         return sum;
     }
 }
+
